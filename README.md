@@ -1,2 +1,2 @@
 # Josi_Repositorio
-Repositorio de códigos Josimar Cassandra.
+Repositorio de códigos de Josimar Cassandra.
