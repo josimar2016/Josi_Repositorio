@@ -1,2 +1,2 @@
-# Josi_Repositorio
-Repositorio de códigos de Josimar Cassandra.
+# Repositorio TQS_G3
+Repositorio de códigos do grupo 3 de TQS.
