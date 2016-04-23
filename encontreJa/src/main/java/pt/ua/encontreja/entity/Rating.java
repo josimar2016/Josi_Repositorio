@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -37,9 +38,11 @@ public class Rating implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
     
+    @JsonIgnore
     @OneToOne
     private User user;
     
+    @JsonIgnore
     @ManyToOne
     private Service service;
 
@@ -83,44 +86,7 @@ public class Rating implements Serializable {
         this.service = service;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.rating;
-        hash = 29 * hash + Objects.hashCode(this.comment);
-        hash = 29 * hash + Objects.hashCode(this.date);
-        hash = 29 * hash + Objects.hashCode(this.user);
-        hash = 29 * hash + Objects.hashCode(this.service);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Rating other = (Rating) obj;
-        if (this.rating != other.rating) {
-            return false;
-        }
-        if (!Objects.equals(this.comment, other.comment)) {
-            return false;
-        }
-        if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
-        if (!Objects.equals(this.service, other.service)) {
-            return false;
-        }
-        return true;
-    }
-    
+   
     
     
     

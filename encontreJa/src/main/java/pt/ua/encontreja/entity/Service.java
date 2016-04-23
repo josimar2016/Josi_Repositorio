@@ -146,55 +146,7 @@ public class Service implements Serializable {
         ratingList.remove(rating);
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.title);
-        hash = 41 * hash + Objects.hashCode(this.description);
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.hourPrice) ^ (Double.doubleToLongBits(this.hourPrice) >>> 32));
-        hash = 41 * hash + (int) (Double.doubleToLongBits(this.feePrice) ^ (Double.doubleToLongBits(this.feePrice) >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.user);
-        hash = 41 * hash + Objects.hashCode(this.category);
-        hash = 41 * hash + Objects.hashCode(this.contactList);
-        hash = 41 * hash + Objects.hashCode(this.ratingList);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Service other = (Service) obj;
-        if (!Objects.equals(this.title, other.title)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.hourPrice) != Double.doubleToLongBits(other.hourPrice)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.feePrice) != Double.doubleToLongBits(other.feePrice)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
-        if (!Objects.equals(this.category, other.category)) {
-            return false;
-        }
-        if (!Objects.equals(this.contactList, other.contactList)) {
-            return false;
-        }
-        if (!Objects.equals(this.ratingList, other.ratingList)) {
-            return false;
-        }
-        return true;
-    }
+ 
     
     
     

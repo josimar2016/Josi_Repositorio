@@ -39,7 +39,17 @@ public class ContactService implements Serializable {
    
     @ManyToOne
     private User user;
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
     
+    @OneToOne
+    private Contact contact;
 
     public double getHours() {
         return hours;
@@ -75,45 +85,6 @@ public class ContactService implements Serializable {
 
  
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + (int) (Double.doubleToLongBits(this.hours) ^ (Double.doubleToLongBits(this.hours) >>> 32));
-        hash = 19 * hash + Objects.hashCode(this.date);
-        hash = 19 * hash + Objects.hashCode(this.description);
-        hash = 19 * hash + Objects.hashCode(this.user);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ContactService other = (ContactService) obj;
-        if (Double.doubleToLongBits(this.hours) != Double.doubleToLongBits(other.hours)) {
-            return false;
-        }
-        if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.user, other.user)) {
-            return false;
-        }
-   
-        return true;
-    }
-    
-    
-    
-    
-    
     
     
 }

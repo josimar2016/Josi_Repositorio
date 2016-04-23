@@ -112,6 +112,7 @@ public class User implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
+    
     @XmlTransient
     @JsonIgnore
     public List<Contact> getcontactList() {
@@ -121,7 +122,7 @@ public class User implements Serializable {
     public void setcontactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
-     @XmlTransient
+    @XmlTransient
     @JsonIgnore
     public List<Service> getServiceList() {
         return serviceList;
@@ -165,65 +166,6 @@ public class User implements Serializable {
         serviceList.remove(service);
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.email);
-        hash = 29 * hash + Objects.hashCode(this.passWord);
-        hash = 29 * hash + Objects.hashCode(this.type);
-        hash = 29 * hash + this.phone;
-        hash = 29 * hash + Objects.hashCode(this.location);
-        hash = 29 * hash + Objects.hashCode(this.contactList);
-        hash = 29 * hash + Objects.hashCode(this.serviceList);
-        hash = 29 * hash + Objects.hashCode(this.contactServiceList);
-        hash = 29 * hash + Objects.hashCode(this.rating);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.passWord, other.passWord)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (this.phone != other.phone) {
-            return false;
-        }
-        if (!Objects.equals(this.location, other.location)) {
-            return false;
-        }
-        if (!Objects.equals(this.contactList, other.contactList)) {
-            return false;
-        }
-        if (!Objects.equals(this.serviceList, other.serviceList)) {
-            return false;
-        }
-        if (!Objects.equals(this.contactServiceList, other.contactServiceList)) {
-            return false;
-        }
-        if (!Objects.equals(this.rating, other.rating)) {
-            return false;
-        }
-        return true;
-    }
-   
-    
     
     
     

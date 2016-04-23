@@ -5,11 +5,9 @@
  */
 package pt.ua.encontreja.dao;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import pt.ua.encontreja.entity.Contact;
 import pt.ua.encontreja.entity.ContactService;
 /**
  *
