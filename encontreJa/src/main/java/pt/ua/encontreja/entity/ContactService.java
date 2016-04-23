@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ContactService")
 public class ContactService implements Serializable {
+
+    public ContactService() {
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +40,6 @@ public class ContactService implements Serializable {
     @ManyToOne
     private User user;
     
-    @OneToOne
-    private Contact contact;
 
     public double getHours() {
         return hours;
@@ -72,13 +73,7 @@ public class ContactService implements Serializable {
         this.user = user;
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+ 
 
     @Override
     public int hashCode() {
@@ -87,7 +82,6 @@ public class ContactService implements Serializable {
         hash = 19 * hash + Objects.hashCode(this.date);
         hash = 19 * hash + Objects.hashCode(this.description);
         hash = 19 * hash + Objects.hashCode(this.user);
-        hash = 19 * hash + Objects.hashCode(this.contact);
         return hash;
     }
 
@@ -112,9 +106,7 @@ public class ContactService implements Serializable {
         if (!Objects.equals(this.user, other.user)) {
             return false;
         }
-        if (!Objects.equals(this.contact, other.contact)) {
-            return false;
-        }
+   
         return true;
     }
     

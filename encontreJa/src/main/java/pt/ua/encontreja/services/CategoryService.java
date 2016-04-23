@@ -5,12 +5,16 @@
  */
 package pt.ua.encontreja.services;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ws.rs.Path;
 import pt.ua.encontreja.dao.CategoryDAO;
 
 /**
  *
  * @author arrais
  */
+@Stateless
+@Path("/category") 
 public class CategoryService {
     
     @EJB

@@ -8,6 +8,7 @@ import java.util.List;
 import pt.ua.encontreja.dao.UserDAO;
 import pt.ua.encontreja.entity.User;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -23,6 +24,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author arrais
  */
+@Stateless
+@Path("/user") 
 public class UserService {
     
     @EJB
@@ -30,14 +33,14 @@ public class UserService {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getAllCampanhas() {
+    public List<User> getAll() {
         return userDao.findAll();
     }
     
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getCampanha(@PathParam("id") int id) {
+    public User getUser(@PathParam("id") int id) {
         return userDao.getUser(id);
     }
     

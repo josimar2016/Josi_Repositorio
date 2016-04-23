@@ -6,6 +6,7 @@
 package pt.ua.encontreja.dao;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.Contact;
@@ -14,16 +15,17 @@ import pt.ua.encontreja.entity.ContactService;
  *
  * @author arrais
  */
+@Stateless
 public class ContactServiceDAO extends AbstractFacade<ContactService>{
 
     @PersistenceContext(unitName = "encontreja")
      private EntityManager em;
+
+    public ContactServiceDAO() {
+         super(ContactService.class);
+    }
     
-    @EJB
-    ContactDAO contactDAO;
-    
-    @EJB
-    UserDAO userDAO;
+
 
     public ContactServiceDAO(Class<ContactService> entityClass) {
         super(entityClass);

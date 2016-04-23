@@ -6,6 +6,7 @@
 package pt.ua.encontreja.dao;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.Rating;
@@ -13,17 +14,16 @@ import pt.ua.encontreja.entity.Rating;
  *
  * @author arrais
  */
+@Stateless
 public class RatingDAO extends AbstractFacade<Rating>{
 
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
 
-    @EJB
-    UserDAO userDAO;
-    
-    @EJB
-    ServiceDAO serviceDAO;
-    
+  
+    public RatingDAO() {
+       super(Rating.class);
+   }
     
     public RatingDAO(Class<Rating> entityClass) {
         super(entityClass);

@@ -26,6 +26,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Entity
 @Table(name = "Category")
 public class Category implements Serializable {
+
+    public Category() {
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

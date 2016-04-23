@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,23 +26,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Contact")
 public class Contact implements Serializable {
+
+    public Contact() {
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+ 
     
     private String description;
     private double estimatedHours;
+    
+    @Temporal(TemporalType.DATE)
     private Date date;
     
     
     @ManyToOne
     private User user;
     
-     @ManyToOne
+    @ManyToOne
     private Service service ;
-    
-    @OneToOne
-    private ContactService contactService;
+   
 
     public String getDescription() {
         return description;
@@ -82,14 +94,7 @@ public class Contact implements Serializable {
         this.service = service;
     }
 
-    public ContactService getContactService() {
-        return contactService;
-    }
-
-    public void setContactService(ContactService contactService) {
-        this.contactService = contactService;
-    }
-
+  
     @Override
     public int hashCode() {
         int hash = 7;
@@ -98,7 +103,6 @@ public class Contact implements Serializable {
         hash = 59 * hash + Objects.hashCode(this.date);
         hash = 59 * hash + Objects.hashCode(this.user);
         hash = 59 * hash + Objects.hashCode(this.service);
-        hash = 59 * hash + Objects.hashCode(this.contactService);
         return hash;
     }
 
@@ -126,9 +130,7 @@ public class Contact implements Serializable {
         if (!Objects.equals(this.service, other.service)) {
             return false;
         }
-        if (!Objects.equals(this.contactService, other.contactService)) {
-            return false;
-        }
+    
         return true;
     }
     

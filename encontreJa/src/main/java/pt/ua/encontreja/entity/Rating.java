@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Rating")
 public class Rating implements Serializable {
+
+    public Rating() {
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

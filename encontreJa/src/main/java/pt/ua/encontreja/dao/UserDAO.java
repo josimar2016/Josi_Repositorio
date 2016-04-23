@@ -6,30 +6,22 @@
 package pt.ua.encontreja.dao;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import pt.ua.encontreja.entity.Service;
 import pt.ua.encontreja.entity.User;
 /**
  *
  * @author arrais
  */
+@Stateless
 public class UserDAO extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
 
-    @EJB
-    ServiceDAO serviceDAO;
-    
-    @EJB
-    RatingDAO ratingDAO;
-    
-    @EJB
-    ContactDAO contactDAO;
-    
-    @EJB
-    ContactServiceDAO contactServiceDAO;
-    
+
     
     public UserDAO(){
         super(User.class);
