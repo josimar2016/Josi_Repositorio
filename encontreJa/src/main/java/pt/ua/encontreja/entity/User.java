@@ -8,7 +8,6 @@ package pt.ua.encontreja.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +32,10 @@ public class User implements Serializable {
     private int id;
     private String name;
     private String email;
-    private String passWord;
+    private String password;
+    private String userImg;
+
+   
     private String type;
     private int phone;
     private String location;
@@ -64,6 +66,14 @@ public class User implements Serializable {
         this.name = name;
     }
 
+     public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -82,11 +92,11 @@ public class User implements Serializable {
     }
 
     public String getPassWord() {
-        return passWord;
+        return password;
     }
 
     public void setPassWord(String passWord) {
-        this.passWord = passWord;
+        this.password = passWord;
     }
 
     public String getType() {
@@ -122,8 +132,8 @@ public class User implements Serializable {
     public void setcontactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
-    @XmlTransient
-    @JsonIgnore
+ 
+    
     public List<Service> getServiceList() {
         return serviceList;
     }

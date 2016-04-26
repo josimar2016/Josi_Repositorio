@@ -93,7 +93,9 @@ public class Service implements Serializable {
     public void setFeePrice(double feePrice) {
         this.feePrice = feePrice;
     }
-
+    
+    @XmlTransient
+    @JsonIgnore
     public User getUser() {
         return user;
     }

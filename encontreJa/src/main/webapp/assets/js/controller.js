@@ -30,34 +30,26 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
         });
     }]);
 
-mainApp.controller('searchController', function ($scope, $http) {
+mainApp.controller('searchController', function ($scope, $http, $location) {
 
 
-//    var url;
-//    if ($scope.isAdmin)
-//        url = "rest/sensors";
-//    else
-//        url = "rest/agricultor/" + $scope.userId + "/sensors";
-//
-//    $http.get(url).success(function (response) {
-//        $scope.sensors = response;
-//
-//        setThisLocalizacao(response[0]);
-//        initGlobalMap(response);
-//
-//
-//    });
-//
-//    $scope.setLocalizacao = function (sensor) {
-//        setThisLocalizacao(sensor);
-//    }
-//
-//    $scope.titulo = "Listagem de sensores em atividade";
+    var url = "api/category";
 
+    $http.get(url).success(function (response) {
+        $scope.categories = response;
+    });
+
+    $scope.submit = function () {
+        $location.path('/people').search({region: $scope.localidade, category: $scope.category.id});
+    };
 
 });
 mainApp.controller('peopleController', function ($scope, $http) {
+    var url = "api/user/type/partner";
 
+    $http.get(url).success(function (response) {
+        $scope.users = response;
+    });
 
 });
 mainApp.controller('registerProController', function ($scope, $http) {

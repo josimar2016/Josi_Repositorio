@@ -12,20 +12,20 @@
                 Encontre o melhor profissional, ao melhor preço de mercado.
             </p>
             <div class="row">
-                <!-- Start Memebr 1 -->
-                <div class="col-md-3 col-sm-6">
+             
+                <div class="col-md-3 col-sm-6" ng-repeat="user in users">
                     <div class="team-member">
                         <div class="team-thumbnail">
-                            <a href="#people/1"><img src="assets/img/team/team-01.png" alt=""></a>
+                            <a href="#people/{{ user.id }}"><img ng-src="assets/img/team/{{ user.userImg }}" alt=""></a>
 
                         </div>
                         <div class="info">
-                            <h4>Paulo Sousa</h4>
-                            <p>Engenheiro Civil</p>
+                            <h4>{{ user.name }}</h4>
+                            <p>{{ user.serviceList[0].category.name }}</p>
                         </div>
                     </div>
                 </div>
-                <!-- Start Memebr 2 -->
+                <!-- dummy info -->
                 <div class="col-md-3 col-sm-6">
                     <div class="team-member">
                         <div class="team-thumbnail">

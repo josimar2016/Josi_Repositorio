@@ -1,14 +1,20 @@
 
-        <!-- Start search Section  -->
+     
         <section class="about section">
             <div class="container">
+                <form id="searchform" ng-submit="submit()">
                 <div class="row">
                     <div class="col-md-6">
                         <!-- Classic Heading -->
                         <div>
                             <h2>O que precisa</h2>
                             <p>
-                                <select name="servico" class="form-control">
+                                
+                                   <select ng-options="category as category.name for category in  categories" ng-model="category" class="form-control">
+                    <option style="display:none" value="">Seleccionar</option>
+                </select>
+                                
+                               <!-- <select name="servico" class="form-control">
                                     <option>escolher</option>
                                     <option>canalizador</option>
                                     <option>carpinteiro</option>
@@ -16,21 +22,37 @@
                                     <option>técnico de informática</option>
                                     <option>eletricista</option>
                                     <option>empregada de limpeza</option>
-                                </select>
+                                </select> -->
                             </p>
                             <h2>Para que localidade</h2>
                             <p>
-                                <select name="localidade" class="form-control">
-                                    <option>aveiro</option>
-                                    <option>porto</option>
-                                    <option>coimbra</option>
+                                <select name="localidade" class="form-control" ng-model="localidade">
+                                    <option style="display:none" value="">Seleccionar</option>
+                                    <option>Aveiro</option>
+                                    <option>Beja</option>
+                                    <option>Braga</option>
+                                    <option>Bragança</option>
+                                    <option>Castelo Branco</option>
+                                    <option>Coimbra</option>
+                                    <option>Évora</option>
+                                    <option>Faro</option>
+                                    <option>Guarda</option>
+                                    <option>Leiria</option>
+                                    <option>Lisboa</option>
+                                    <option>Portalegre</option>
+                                    <option>Porto</option>
+                                    <option>Santarém</option>
+                                    <option>Setúbal</option>
+                                    <option>Viana do Castelo</option>
+                                    <option>Vila Real</option>
+                                    <option>Viseu</option>
                                 </select>
                             </p>
                         </div>
 
                         <div class="group-btn">
-                            <a href="people.html" class="btn btn-effect">Pesquisar</a>
-
+                         
+ <input type="submit" id="submit" value="Pesquisar" class="btn btn-effect"/>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -39,6 +61,8 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
+            
         </section>
      

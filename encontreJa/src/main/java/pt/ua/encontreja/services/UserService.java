@@ -38,6 +38,13 @@ public class UserService {
     }
     
     @GET
+    @Path("/type/{type}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getUsersbyType(@PathParam("type") String type) {
+        return userDao.GetUsersByType(type);
+    }
+    
+    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") int id) {

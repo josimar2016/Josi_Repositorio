@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package pt.ua.encontreja.dao;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.User;
+
 /**
  *
  * @author arrais
@@ -19,33 +21,33 @@ public class UserDAO extends AbstractFacade<User> {
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
 
-
-    
-    public UserDAO(){
+    public UserDAO() {
         super(User.class);
     }
-    
-      public List<User> getAllUser(){
+
+    public List<User> getAllUser() {
         return super.findAll();
     }
-    
-    public int editContactRating(User user){
+
+     public List<User> GetUsersByType(String type) {
+        List<User> results = em.createQuery("SELECT u FROM User u WHERE u.type LIKE :type")
+                .setParameter("type", type).getResultList();
+        return results;
+    }
+     
+     
+    public int editContactRating(User user) {
         super.edit(user);
         return 1;
     }
-    
-    public User getUser(int id){
+
+    public User getUser(int id) {
         return super.find(id);
     }
-    
- 
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
-  
-    
-    
-    
 }
