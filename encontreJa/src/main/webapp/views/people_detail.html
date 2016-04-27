@@ -13,23 +13,21 @@
                     <!-- Single Projects Slider End -->
                     <!-- Single Project CContent Start -->
                     <div class="col-md-8">
-                        <h2 class="big-title">PAULO SOUSA</h2>
-                        <h3>Engenheiro Civil</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam laudantium provident cum beatae deserunt, doloribus esse eaque obcaecati, qui aut dicta reprehenderit incidunt, illum aliquid excepturi non inventore optio, ratione. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat dignissimos alias, vel perferendis aut laudantium voluptatem, eius animi tempore voluptatibus enim neque, veniam maxime! Non, ipsa excepturi obcaecati in nisi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita corrupti rerum ratione. Quisquam accusantium, neque non porro quo voluptatibus nobis quod obcaecati. Laborum nobis, similique rem assumenda at dolor fuga.</p>
-                        <br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam laudantium provident cum beatae deserunt, doloribus esse eaque obcaecati, qui aut dicta reprehenderit incidunt, illum aliquid excepturi non inventore optio, ratione. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat dignissimos alias, vel perferendis aut laudantium voluptatem, eius animi tempore voluptatibus enim neque, veniam maxime! Non, ipsa excepturi obcaecati in nisi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita corrupti rerum ratione. Quisquam accusantium, neque non porro quo voluptatibus nobis quod obcaecati. Laborum nobis, similique rem assumenda at dolor fuga.</p>
-
-                       
+                        <h2 class="big-title">{{ user.name }}</h2>
+                        <h3>{{ user.serviceList[0].category.name}}</h3>
+                        <div><strong>{{ user.serviceList[0].title}}</strong></div>
+                        {{ user.serviceList[0].description}}
+                      
                     </div>
                     <div class="col-md-4">
                         <div class="project-details">
                             <h4>Informações úteis:</h4>
-                            <p><span>Localização:</span> Aveiro</p>
-                            <p><span>Custo:</span> 40€ /hora</p>
-                            <p><span>Deslocação:</span> 20€</p>
+                            <p><span>Localização:</span> {{user.location}}</p>
+                            <p><span>Custo:</span>  {{ user.serviceList[0].hourPrice}}€ /hora</p>
+                            <p><span>Deslocação:</span> {{ user.serviceList[0].feePrice}}€</p>
                             <p><span>Avalição:</span> 4/5</p>
                            
-                            <p><span>Profissão:</span> Engenheiro Civil</p>
+                            <p><span>Profissão:</span> {{ user.serviceList[0].category.name}}</p>
                         </div>
 
                         <a href="#contact/1" class="btn btn-larg btn-effect">Entrar em contacto</a>

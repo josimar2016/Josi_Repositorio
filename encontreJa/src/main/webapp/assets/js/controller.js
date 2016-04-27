@@ -62,7 +62,12 @@ mainApp.controller('registerController', function ($scope, $http) {
 
 });
 
-mainApp.controller('peopleDetController', function ($scope, $http) {
+mainApp.controller('peopleDetController', function ($scope, $http,$routeParams) {
+
+    var url = "api/user/" + $routeParams.id;
+    $http.get(url).success(function (response) {
+        $scope.user = response;
+    });
 
 
 });
