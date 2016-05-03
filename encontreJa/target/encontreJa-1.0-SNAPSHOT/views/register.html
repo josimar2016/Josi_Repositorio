@@ -1,0 +1,70 @@
+
+    
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h2 class="big-title">Novo registo</h2>
+                        <!-- Form -->
+                            <form name="form" ng-submit="vm.register()" role="form">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                                        <input type="text" name="name" id = "name" class = "form-control" ng-model="vm.user.name" required placeholder = "Nome"/>
+                                        <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block"> Name is required</span>
+                                    </div>
+                                 </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                                        <input type="text" name="email" id = "email" class = "form-control" ng-model="vm.email.name" required placeholder = "Email"/>
+                                        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block"> Email is required</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="form-group" ng-class="{ 'has-error': form.telefone.$dirty && form.telefone.$error.required }">
+                                        <input type="text" name="telefone" id = "email" class = "form-control" ng-model="vm.telefone.name" required placeholder = "Telefone"/>
+                                        <span ng-show="form.telefone.$dirty && form.telefone.$error.required" class="help-block"> Telefone is required</span>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-md-8">
+                                    <div class="form-group" ng-class="{ 'has-error': form.subject.$dirty && form.subject.$error.required }">
+                                        <input type="text" name="subject" id = "subject" class = "form-control" ng-model="vm.subject.name" required placeholder = "localização"/>
+                                         <span ng-show="form.subject.$dirty && form.subject.$error.required" class="help-block"> localização is required</span>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-md-8">
+                                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                        <input type="text" name="password" id = "password" class = "form-control" ng-model="vm.password.name" required placeholder = "Password"/>
+                                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block"> Password is required</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                   <button type="submit" class="btn btn-primary">{{btnsubmit}}</button>
+                                    
+                                    <button  class= 'btn bt' onclick="window.location.href='#/index'">Cancel</button>
+                                   
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="big-title">Profissionais</h2>
+                        <div class="information">
+                            É um profissional que pretende registar-se no nosso portal?
+                        </div>
+                        <br />
+                        <p>
+                            <a href="#register_professional" class="btn btn-larg btn-effect">Registo Profissional</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+     
