@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -41,7 +41,7 @@ public class UserService {
     @Path("/type/{type}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsersbyType(@PathParam("type") String type) {
-        return userDao.GetUsersByType(type);
+        return userDao.getUsersByType(type);
     }
     
     @GET
@@ -55,7 +55,7 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String insertCUser(
-            @FormParam("id_user") int id_user,
+            @FormParam("id_user") int userID,
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
@@ -65,7 +65,7 @@ public class UserService {
             @Context HttpServletResponse servletResponse){
         
             User user = new User();
-            user.setId(id_user);
+            user.setId(userID);
             user.setName(nome);
             user.setEmail(email);
             user.setPassWord(password);
@@ -81,7 +81,7 @@ public class UserService {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String editCUser(
-            @FormParam("id_user") int id_user,
+            @FormParam("id_user") int userID,
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
@@ -91,7 +91,7 @@ public class UserService {
             @Context HttpServletResponse servletResponse){
         
             User user = new User();
-            user.setId(id_user);
+            user.setId(userID);
             user.setName(nome);
             user.setEmail(email);
             user.setPassWord(password);

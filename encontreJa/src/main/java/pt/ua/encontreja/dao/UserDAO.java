@@ -29,10 +29,9 @@ public class UserDAO extends AbstractFacade<User> {
         return super.findAll();
     }
 
-     public List<User> GetUsersByType(String type) {
-        List<User> results = em.createQuery("SELECT u FROM User u WHERE u.type LIKE :type")
+     public List<User> getUsersByType(String type) {
+        return em.createQuery("SELECT u FROM User u WHERE u.type LIKE :type")
                 .setParameter("type", type).getResultList();
-        return results;
     }
      
      

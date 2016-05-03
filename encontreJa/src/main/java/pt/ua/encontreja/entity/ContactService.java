@@ -7,7 +7,6 @@ package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,19 +25,23 @@ import javax.persistence.TemporalType;
 @Table(name = "ContactService")
 public class ContactService implements Serializable {
 
-    public ContactService() {
-    }
-    
+    private static final long serialVersionUID = 2435172041950251807L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private double hours;
-     
+
     @Temporal(TemporalType.DATE)
     private Date date;
     private String description;
-   
+
     @ManyToOne
     private User user;
+
+    @OneToOne
+    private Contact contact;
+
+    public ContactService() {
+    }
 
     public Contact getContact() {
         return contact;
@@ -47,9 +50,6 @@ public class ContactService implements Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-    
-    @OneToOne
-    private Contact contact;
 
     public double getHours() {
         return hours;
@@ -83,8 +83,4 @@ public class ContactService implements Serializable {
         this.user = user;
     }
 
- 
-
-    
-    
 }

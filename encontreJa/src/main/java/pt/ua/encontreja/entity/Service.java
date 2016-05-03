@@ -8,7 +8,6 @@ package pt.ua.encontreja.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,41 +24,42 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author arrais
  */
 @Entity
-@Table(name="Service")
+@Table(name = "Service")
 public class Service implements Serializable {
 
-    public Service() {
-    }
+    private static final long serialVersionUID = 7526472295622776147L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    public int getId() {
-        return id;
-    }
-            
     private String title;
     private String description;
     private double hourPrice;
     private double feePrice;
     //falta adicionar a imagem
-    
+
     @ManyToOne
     private User user;
-    
+
     @ManyToOne
     private Category category;
-    
-    @OneToMany(mappedBy = "Service", cascade={CascadeType.ALL}, orphanRemoval=true)
+
+    @OneToMany(mappedBy = "Service", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Contact> contactList;
-    
-    @OneToMany(mappedBy = "Service", cascade={CascadeType.ALL}, orphanRemoval=true)
+
+    @OneToMany(mappedBy = "Service", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Rating> ratingList;
+
+    public Service() {
+    }
 
     public Service(List<Contact> contactList, List<Rating> ratingList) {
         this.contactList = new ArrayList<>();
         this.ratingList = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -93,7 +93,7 @@ public class Service implements Serializable {
     public void setFeePrice(double feePrice) {
         this.feePrice = feePrice;
     }
-    
+
     @XmlTransient
     @JsonIgnore
     public User getUser() {
@@ -111,7 +111,7 @@ public class Service implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+
     @XmlTransient
     @JsonIgnore
     public List<Contact> getContactList() {
@@ -121,7 +121,7 @@ public class Service implements Serializable {
     public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
-    
+
     @XmlTransient
     @JsonIgnore
     public List<Rating> getRatingList() {
@@ -131,25 +131,21 @@ public class Service implements Serializable {
     public void setRatingList(List<Rating> ratingList) {
         this.ratingList = ratingList;
     }
-    
-    public void addContactList(Contact contact){
+
+    public void addContactList(Contact contact) {
         contactList.add(contact);
     }
-    
-    public void removeContactList(Contact contact){
+
+    public void removeContactList(Contact contact) {
         contactList.remove(contact);
     }
-    
-    public void addRating(Rating rating){
+
+    public void addRating(Rating rating) {
         ratingList.add(rating);
     }
-    
-    public void removeRating(Rating rating){
+
+    public void removeRating(Rating rating) {
         ratingList.remove(rating);
     }
 
- 
-    
-    
-    
 }
