@@ -7,7 +7,6 @@ package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,31 +26,32 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Rating")
 public class Rating implements Serializable {
 
-    public Rating() {
-    }
-    
+    private static final long serialVersionUID = 2445172041950251807L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rating;
+    private int ratng;
     private String comment;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     @JsonIgnore
     @OneToOne
     private User user;
-    
+
     @JsonIgnore
     @ManyToOne
     private Service service;
 
-    public int getRating() {
-        return rating;
+    public Rating() {
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public int getRatng() {
+        return ratng;
+    }
+
+    public void setRatng(int ratng) {
+        this.ratng = ratng;
     }
 
     public String getComment() {
@@ -86,11 +86,4 @@ public class Rating implements Serializable {
         this.service = service;
     }
 
-   
-    
-    
-    
-    
-    
-    
 }
