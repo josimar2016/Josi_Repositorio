@@ -1,0 +1,66 @@
+   <section id="content">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Projects Slider Start -->
+                    <div class="col-md-12 single-slider">
+                        <!-- Post post-thumb -->
+                        <div class="post-thumb">
+                            <img src="assets/img/project/img3.jpg" alt="">
+                        </div>
+                        <!-- End Post post-thumb -->
+                    </div>
+                    <!-- Single Projects Slider End -->
+                    <!-- Single Project CContent Start -->
+                    <div class="col-md-8">
+                        <h2 class="big-title">{{ user.name }}</h2>
+                        <h3>{{ user.serviceList[0].category.name}}</h3>
+                        <div><strong>{{ user.serviceList[0].title}}</strong></div>
+                        {{ user.serviceList[0].description}}
+                      
+                    </div>
+                    <div class="col-md-4">
+                        <div class="project-details">
+                            <h4>Informações úteis:</h4>
+                            <p><span>Localização:</span> {{user.location}}</p>
+                            <p><span>Custo:</span>  {{ user.serviceList[0].hourPrice}}€ /hora</p>
+                            <p><span>Deslocação:</span> {{ user.serviceList[0].feePrice}}€</p>
+                            <p><span>Avalição:</span> 4/5</p>
+                           
+                            <p><span>Profissão:</span> {{ user.serviceList[0].category.name}}</p>
+                        </div>
+
+                        <a href="#contact/1" class="btn btn-larg btn-effect">Entrar em contacto</a>
+                    </div>
+                    <!-- Single Project CContent End -->
+                    <div class="blog-post">
+                        <div class="col-md-12 single-slider">
+                            <h3>Comentários</h3>
+                            <br />
+                            <div class="post-content">
+                                <div class="meta">
+                                    <span class="meta-part"><i class="icon-clock"></i> <a href="#">13 Janeiro 2016</a></span>
+                                    <span class="meta-part"><a href="#"><i class="icon-user"></i> Pedro Santos</a></span>
+                                    <span class="meta-part"><a href="#"><i class="icon-heart"></i> 4/5</a></span>
+                                </div>
+                                <p>O Paulo fez um bom trabalho. Recomendo</p>
+
+                            </div>
+
+                            <div class="post-content">
+                                <div class="meta">
+                                    <span class="meta-part"><i class="icon-clock"></i> <a href="#">5 Dezembro 2015</a></span>
+                                    <span class="meta-part"><a href="#"><i class="icon-user"></i> Manuel Santos</a></span>
+                                    <span class="meta-part"><a href="#"><i class="icon-heart"></i> 5/5</a></span>
+                                </div>
+                                <p>Queria apenas agradecer o excelente trabalho efetuado pelo Paulo!</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </section>
+     
+     

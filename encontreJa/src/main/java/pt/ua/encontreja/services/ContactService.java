@@ -29,7 +29,7 @@ import pt.ua.encontreja.entity.Contact;
  * @author arrais
  */
 @Stateless
-@Path("/contact") 
+
 public class ContactService {
     
     @EJB

@@ -14,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  * @author arrais
  */
 @Stateless
-@Path("/user") 
+
 public class UserService {
     
     @EJB
@@ -38,14 +39,14 @@ public class UserService {
     }
     
     @GET
-    @Path("/type/{type}")
+    @Path("/{id_user}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsersbyType(@PathParam("type") String type) {
         return userDao.GetUsersByType(type);
     }
     
     @GET
-    @Path("/{id}")
+    @Path("/{id_user}")
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") int id) {
         return userDao.getUser(id);
@@ -77,7 +78,7 @@ public class UserService {
             return "sucess";                  
     }
     
-    @POST
+    @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String editCUser(

@@ -13,7 +13,7 @@ import pt.ua.encontreja.dao.RatingDAO;
  * @author arrais
  */
 @Stateless
-@Path("/rating") 
+
 public class RatingService {
     
     @EJB
