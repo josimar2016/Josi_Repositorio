@@ -19,7 +19,7 @@ import pt.ua.encontreja.entity.Category;
  * @author arrais
  */
 @Stateless
-@Path("/category") 
+
 public class CategoryService {
     
     @EJB

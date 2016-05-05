@@ -13,7 +13,7 @@ import pt.ua.encontreja.dao.ContactServiceDAO;
  * @author arrais
  */
 @Stateless
-@Path("/service") 
+
 public class ContactSService {
     
     @EJB

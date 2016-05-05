@@ -1,0 +1,68 @@
+
+     
+        <section class="about section">
+            <div class="container">
+                <form id="searchform" ng-submit="submit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Classic Heading -->
+                        <div>
+                            <h2>O que precisa</h2>
+                            <p>
+                                
+                                   <select ng-options="category as category.name for category in  categories" ng-model="category" class="form-control">
+                    <option style="display:none" value="">Seleccionar</option>
+                </select>
+                                
+                               <!-- <select name="servico" class="form-control">
+                                    <option>escolher</option>
+                                    <option>canalizador</option>
+                                    <option>carpinteiro</option>
+                                    <option>pintor</option>
+                                    <option>técnico de informática</option>
+                                    <option>eletricista</option>
+                                    <option>empregada de limpeza</option>
+                                </select> -->
+                            </p>
+                            <h2>Para que localidade</h2>
+                            <p>
+                                <select name="localidade" class="form-control" ng-model="localidade">
+                                    <option style="display:none" value="">Seleccionar</option>
+                                    <option>Aveiro</option>
+                                    <option>Beja</option>
+                                    <option>Braga</option>
+                                    <option>Bragança</option>
+                                    <option>Castelo Branco</option>
+                                    <option>Coimbra</option>
+                                    <option>Évora</option>
+                                    <option>Faro</option>
+                                    <option>Guarda</option>
+                                    <option>Leiria</option>
+                                    <option>Lisboa</option>
+                                    <option>Portalegre</option>
+                                    <option>Porto</option>
+                                    <option>Santarém</option>
+                                    <option>Setúbal</option>
+                                    <option>Viana do Castelo</option>
+                                    <option>Vila Real</option>
+                                    <option>Viseu</option>
+                                </select>
+                            </p>
+                        </div>
+
+                        <div class="group-btn">
+                         
+ <input type="submit" id="submit" value="Pesquisar" class="btn btn-effect"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="featured-thumb">
+                            <img src="assets/img/about/img1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            
+        </section>
+     

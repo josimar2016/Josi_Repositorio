@@ -14,7 +14,7 @@ import pt.ua.encontreja.dao.ServiceDAO;
  * @author arrais
  */
 @Stateless
-@Path("/service") 
+
 public class ServiceService {
     
     @EJB
