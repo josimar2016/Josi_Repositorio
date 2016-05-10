@@ -1,35 +1,67 @@
 
-    
+        
         <section id="content">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                        <h2 class="big-title">Novo registo para Profissionais</h2>
+                        <h2 class="big-title">Novo registo</h2>
                         <!-- Form -->
-                        <form action="" id="contact-form" class="contact-form" role="form" method="post">
+                        <div class="login-box-body" ng-controller="CreateUserController">
+                            <form role="form" ng-submit="processForm()">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="name" placeholder="Nome">
-                                </div>
+                                    <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                                        <input type="text" name="nome" id = "name" class = "form-control" ng-model="formData.nome" required placeholder = "Nome"/>
+                                        <span ng-show="form.nome.$dirty && form.nome.$error.required" class="help-block"> Nome obrigatorio</span>
+                                    </div>
+                                 </div>
+                                
                                 <div class="col-md-8">
-                                    <input type="email" class="form-control" name="EMAIL" placeholder="Email">
+                                    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                                        <input type="text" name="email" id = "email" class = "form-control" ng-model="formData.email" required placeholder = "Email"/>
+                                        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block"> Email obrigatorio</span>
+                                    </div>
                                 </div>
+                                
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="phone" placeholder="Telefone">
+                                    <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+                                        <input type="text" name="phone" id ="phone" class = "form-control" ng-model="formData.phone" required placeholder = "Telefone"/>
+                                        <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block"> Telefone obrigatorio</span>
+                                    </div>
                                 </div>
+                                
+                                
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="subject" placeholder="Localização">
+                                    <div class="form-group" ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
+                                        <input type="text" name="location" id="location" class="form-control" ng-model="formData.location" required placeholder = "localização"/>
+                                         <span ng-show="form.location.$dirty && form.location.$error.required" class="help-block"> localização obrigatorio</span>
+                                    </div>
                                 </div>
+                                
+                                
                                 <div class="col-md-8">
-                                    <input type="password" class="form-control" name="subject" placeholder="password">
+                                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                        <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required placeholder="Password"/>
+                                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block"> Password obrigatorio</span>
+                                    </div>
                                 </div>
+                                  <input type="hidden"  ng-model="formData.type" ng-init="formData.type = type" />
+                                  <input type="hidden"  ng-model="formData.userImg" ng-init="formData.userImg = userImg" />
                                 <div class="col-md-6">
-                                    <button type="submit" id="submit" class="btn btn-effect"> Enviar</button>
+                                   <button type="submit" class="btn btn-primary">{{btnsubmit}}</button>
+                                    
+                                    <button  class= 'btn bt' onclick="window.location.href='#/index'">Cancel</button>
                                    
                                 </div>
+                                
                             </div>
+                                  <div class="row">
+                 <div class="col-xs-12"> {{message}} {{formdata}}
+                 </div>
+             </div>
                         </form>
                     </div>
+                         </div>
                     <div class="col-md-3">
                         <h2 class="big-title">Profissionais</h2>
                         <div class="information">
@@ -41,6 +73,7 @@
                         </p>
                     </div>
                 </div>
+             
             </div>
         </section>
      

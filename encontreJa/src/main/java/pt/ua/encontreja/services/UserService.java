@@ -55,26 +55,35 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public String insertCUser(
-            @FormParam("id_user") int id_user,
+           
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
             @FormParam("type") String type,
             @FormParam("phone") int phone,
             @FormParam("location") String location,
+            @FormParam("userImg") String userImg,
             @Context HttpServletResponse servletResponse){
-        
+            System.out.println("creating new user");
+            System.out.println("nome:" + nome);
+            System.out.println("email:" + email);
+            System.out.println("password:" + password);
+            System.out.println("type:" + type);
+            System.out.println("phone:" + phone);
+            System.out.println("location:" + location);
             User user = new User();
-            user.setId(id_user);
+         
             user.setName(nome);
             user.setEmail(email);
             user.setPassWord(password);
             user.setPhone(phone);
             user.setLocation(location);
+            user.setUserImg(userImg);
             user.setType(type);
             
-            //TO-DO
-            return "sucess";                  
+            userDao.create(user);
+           
+            return "1";                  
     }
     
     @POST
