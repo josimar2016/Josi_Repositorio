@@ -111,13 +111,11 @@ mainApp.controller('CreateUserController', function ($scope, $http) {
         })
                 .error(function () {
                    
-                    console.log("entrei 2");
+                   
                     $scope.message = 'Erro ao efetuar o registo.';
                 })
-                 .success(function (data) {
-                        console.log(data);
-       
-                  
+                 .success(function () {
+ 
                     $scope.message = 'Registo efetuado com sucesso.';
                 });
     

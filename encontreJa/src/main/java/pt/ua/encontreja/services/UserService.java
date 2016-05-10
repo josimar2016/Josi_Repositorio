@@ -97,6 +97,7 @@ public class UserService {
             @FormParam("type") String type,
             @FormParam("phone") int phone,
             @FormParam("location") String location,
+            @FormParam("userImg") String userImg,
             @Context HttpServletResponse servletResponse){
         
             User user = new User();
@@ -107,9 +108,10 @@ public class UserService {
             user.setPhone(phone);
             user.setLocation(location);
             user.setType(type);
+            user.setUserImg(userImg);
             
-            //TO-DO
-            return "sucess";
+            userDao.create(user);
+            return "1";
                     
     }
     
