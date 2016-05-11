@@ -8,7 +8,7 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 when('/register_professional', {
                     templateUrl: 'views/register_professional.html',
-                    controller: 'registerProController',     
+                    controller: 'CreateUserProController',     
                 }).
                         
                 when('/login', {
@@ -63,15 +63,8 @@ mainApp.controller('peopleController', function ($scope, $http) {
     });
 
 });
-mainApp.controller('registerProController', function ($scope, $http) {
 
 
-});
-
-mainApp.controller('registerController', function ($scope, $http) {
-
-
-});
 
 
 mainApp.controller('loginController', function ($scope, $http) {
@@ -121,6 +114,36 @@ mainApp.controller('CreateUserController', function ($scope, $http) {
     
         };
 
+
+
+});
+
+
+mainApp.controller('CreateUserProController', function ($scope, $http) {
+    $scope.btnsubmit = "Registar Pro"
+    $scope.titulo = "Criar novo Profissional"
+    $scope.type = "professional";
+    $scope.formData = {};
+    
+     $scope.processForm = function () {
+        $http({
+            method: 'POST',
+            url: 'api/user',
+            data: $.param($scope.formData), // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
+        })
+                .error(function () {
+                   
+                   
+                    $scope.message = 'Erro ao efetuar o registo do profissional.';
+                })
+                 .success(function () {
+ 
+                    $scope.message = 'Registo do profissional efetuado com sucesso.';
+                });
+    
+        };
+    
 });
 
 
