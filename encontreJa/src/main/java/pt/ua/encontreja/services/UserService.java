@@ -17,6 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -40,8 +41,15 @@ public class UserService {
     @GET
     @Path("/type/{type}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsersbyType(@PathParam("type") String type) {
-        return userDao.GetUsersByType(type);
+    public List<User> getUsersbyType(@PathParam("type") String type,@QueryParam("c") int cat, @QueryParam("l") String location) {
+     
+        if (!"".equals(cat) && !"".equals(location))  {
+             return userDao.GetUsersByTypeWithParms(type,cat,location);
+        }
+        else {
+            return userDao.GetUsersByType(type);
+        }
+        
     }
     
     @GET

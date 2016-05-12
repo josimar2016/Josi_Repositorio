@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.QueryParam;
 import pt.ua.encontreja.entity.User;
 
 /**
@@ -29,12 +30,27 @@ public class UserDAO extends AbstractFacade<User> {
         return super.findAll();
     }
 
-     public List<User> GetUsersByType(String type) {
-        List<User> results = em.createQuery("SELECT u FROM User u WHERE u.type LIKE :type")
+    public List<User> GetUsersByType(String type) {
+
+        String q = "SELECT u FROM User u WHERE u.type LIKE :type";
+        
+        List<User> results = em.createQuery(q)
                 .setParameter("type", type).getResultList();
         return results;
     }
-     
+      public List<User> GetUsersByTypeWithParms(String type, int cat, String location) {
+        
+        String q = "SELECT u FROM User u, Service s, Category c \n" +
+" WHERE u.id = s.id and s.id = c.id and u.type LIKE :type and c.id = :cid and u.location = :location";
+ 
+        List<User> results = em.createQuery(q)
+                .setParameter("type", type)
+                .setParameter("cid", cat)
+                .setParameter("location", location)
+                .getResultList();
+        return results;
+    }
+   
      
     public int editContactRating(User user) {
         super.edit(user);
