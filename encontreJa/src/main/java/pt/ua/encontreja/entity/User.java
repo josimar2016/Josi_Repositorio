@@ -90,7 +90,8 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
+    @JsonIgnore
     public String getPassWord() {
         return password;
     }

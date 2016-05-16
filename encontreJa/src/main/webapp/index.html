@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html ng-app="mainApp">
+<html ng-app="mainApp" ng-controller="mainAppCtrl">
 
 <head>
     <!-- Basic -->
@@ -102,7 +102,7 @@
                                     Encontrar profissional
                                 </a>
                             </li>
-                           
+                      
                             <li>
                                 <a href="#people">
                                     Os nossos profissionais
@@ -110,14 +110,24 @@
                             </li>
                       
                            
-                            <li>
+                            <li ng-hide="isLogged">
                                 <a href="#register">
                                     Registo
                                 </a>
                             </li>
-                            <li>
+                            <li ng-hide="isLogged">
                                  <a href="#login">
                                      Login
+                                 </a>
+                             </li>
+                              <li ng-hide="!isLogged">
+                                 <a href="#">
+                                     {{username}}
+                                 </a>
+                             </li>
+                              <li ng-hide="!isLogged">
+                                 <a href="#logout">
+                                     Logout
                                  </a>
                              </li>
                         </ul>
