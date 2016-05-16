@@ -81,6 +81,11 @@ public class UserService {
             System.out.println("type:" + type);
             System.out.println("phone:" + phone);
             System.out.println("location:" + location);
+            System.out.println("creating new Service:");
+            System.out.println("nome:" + serviceName);
+            System.out.println("descripton:" + descripton);
+            System.out.println("feePrice:" + feePrice);
+            System.out.println("hourPrice:" + hourPrice);
             
             User user = new User();
            
@@ -96,18 +101,20 @@ public class UserService {
          
             userDao.create(user);
           
-            Service service = new Service();
             
             
-            service.setTitle(serviceName);
-            service.setDescription(descripton);
-            service.setFeePrice(feePrice);
-            service.setHourPrice(hourPrice);
-            
-            user.addService(service);
-            serviceDAO.create(service);
-            
-   
+            if(type == "professional"){ 
+                Service service = new Service();
+                
+                service.setTitle(serviceName);
+                service.setDescription(descripton);
+                service.setFeePrice(feePrice);
+                service.setHourPrice(hourPrice);
+
+                user.addService(service);
+                serviceDAO.create(service);
+             }
+
             return "1";                  
     }
     
