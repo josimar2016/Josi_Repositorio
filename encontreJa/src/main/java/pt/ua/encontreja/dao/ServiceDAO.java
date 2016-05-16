@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pt.ua.encontreja.dao;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,9 +25,7 @@ public class ServiceDAO extends AbstractFacade<Service>{
           super(Service.class);
     }
 
-    
-   
-    
+
     public ServiceDAO(Class<Service> entityClass) {
         super(entityClass);
     }
@@ -35,6 +34,7 @@ public class ServiceDAO extends AbstractFacade<Service>{
         return super.findAll();
     }
     
+      
     public int editService(Service service){
         super.edit(service);
         return 1;
