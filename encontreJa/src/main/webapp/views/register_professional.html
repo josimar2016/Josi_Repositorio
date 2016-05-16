@@ -5,22 +5,46 @@
                     <div class="col-md-9">
                         <h2 class="big-title">Novo registo para profissionais</h2>
                         <!-- Form -->
-                        <form action="" id="contact-form" class="contact-form" role="form" method="post">
+      
+                            <div class="login-box-body" ng-controller="CreateUserProController">
+                            <form role="form" ng-submit="processForm()">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="name" placeholder="Nome">
-                                </div>
+                                    <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                                        <input type="text" name="nome" id = "name" class = "form-control" ng-model="formData.nome" required placeholder = "Nome"/>
+                                        <span ng-show="form.nome.$dirty && form.nome.$error.required" class="help-block"> Nome obrigatorio</span>
+                                    </div>
+                                 </div>
+                                
                                 <div class="col-md-8">
-                                    <input type="email" class="form-control" name="EMAIL" placeholder="Email">
+                                    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                                        <input type="text" name="email" id = "email" class = "form-control" ng-model="formData.email" required placeholder = "Email"/>
+                                        <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block"> Email obrigatorio</span>
+                                    </div>
                                 </div>
+                                
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="phone" placeholder="Telefone">
+                                    <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+                                        <input type="text" name="phone" id ="phone" class = "form-control" ng-model="formData.phone" required placeholder = "Telefone"/>
+                                        <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block"> Telefone obrigatorio</span>
+                                    </div>
                                 </div>
+                                
+                                
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" name="subject" placeholder="Localização">
+                                    <div class="form-group" ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
+                                        <input type="text" name="location" id="location" class="form-control" ng-model="formData.location" required placeholder = "localização"/>
+                                         <span ng-show="form.location.$dirty && form.location.$error.required" class="help-block"> localização obrigatorio</span>
+                                    </div>
                                 </div>
+                                
+                                
                                 <div class="col-md-8">
-                                    <input type="password" class="form-control" name="subject" placeholder="password">
+                                    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                        <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required placeholder="Password"/>
+                                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block"> Password obrigatorio</span>
+                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-8">
                                     <h3>
@@ -38,24 +62,44 @@
                                         </select>
                                     </div>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" placeholder="Descrição do seu serviço" rows="9"></textarea>
+                                     
+                                        <textarea class="form-control" placeholder="Descrição do seu serviço" rows="9"></textarea>
+                                   
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="number" class="form-control" name="HourPrice" placeholder="Custo Hora">
+                                    <div class="form-group" ng-class="{ 'has-error': form.hourprice.$dirty && form.hourprice.$error.required }">
+                                        <input type="number" class="form-control" id="hourprice"  name="hourprice" ng-model="formData.hourprice"required placeholder="Custo Hora">
+                                        <span ng-show="form.hourprice.$dirty && form.hourprice.$error.required" class="help-block"> preço da hora obrigatorio.</span>
+                                    </div>
                                 </div>
+                                
                                 <div class="col-md-8">
-                                    <input type="number" class="form-control" name="feePrice" placeholder="Custo Deslocação">
+                                     <div class="form-group" ng-class="{ 'has-error': form.number.$dirty && form.number.$error.required }">
+                                        <input type="number" class="form-control" id="number"  name="number" ng-model="formData.number"required  placeholder="Custo Deslocação">
+                                        <span ng-show="form.number.$dirty && form.number.$error.required" class="help-block"> Custo Deslocação obrigatorio.</span>
+                                    </div>
                                 </div>
                                 <div class="col-md-8">Imagem de apresentação
-                                    <input type="file" class="form-control" name="imagem"> 
+                                    <div class="form-group" ng-class="{ 'has-error': form.imagem.$dirty && form.imagem.$error.required }">
+                                        <input type="file" class="form-control" id="imagem" ng-model="formData.number"required  name="imagem"> 
+                                        <span ng-show="form.imagem.$dirty && form.imagem.$error.required" class="help-block"> Imagem obrigatoria.</span>
+                                    </div>
                                 </div>
+                                
+                                <input type="hidden"  ng-model="formData.type" ng-init="formData.type = type" />
+                                  
                                     <div class="col-md-6">
-                                        <button type="submit" id="submit" class="btn btn-effect"> Enviar</button>
+                                        <button type="submit" class="btn btn-primary">{{btnsubmit}}</button>
+                                        <button  class= 'btn bt' onclick="window.location.href='#/index'">Cancel</button>
 
                                     </div>
                                 </div>
+                                 <div class="col-xs-12"> {{message}} 
+                            </div>
                         </form>
                     </div>
+                    </div>
+                    
                     <div class="col-md-3">
                         <h2 class="big-title">Clientes</h2>
                         <div class="information">
@@ -66,7 +110,7 @@
                             <a href="#register" class="btn btn-larg btn-effect">Registo Cliente</a>
                         </p>
                     </div>
-                </div>
+                
             </div>
         </section>
       
