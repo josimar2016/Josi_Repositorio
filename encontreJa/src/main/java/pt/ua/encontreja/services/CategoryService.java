@@ -9,7 +9,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import pt.ua.encontreja.dao.CategoryDAO;
@@ -31,14 +30,5 @@ public class CategoryService {
     public List<Category> getAll() {
         return categoryDAO.findAll();
        
-    }
-    
-
-    
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Category get(@PathParam("id") int id) {
-        return categoryDAO.find(id);
     }
 }

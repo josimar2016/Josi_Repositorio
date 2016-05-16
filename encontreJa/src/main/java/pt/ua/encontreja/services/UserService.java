@@ -17,9 +17,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import pt.ua.encontreja.dao.ServiceDAO;
+import pt.ua.encontreja.entity.Service;
 
 /**
  *
@@ -32,6 +33,9 @@ public class UserService {
     @EJB
     UserDAO userDao;
     
+    @EJB
+    ServiceDAO serviceDAO;
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAll() {
@@ -41,15 +45,8 @@ public class UserService {
     @GET
     @Path("/type/{type}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsersbyType(@PathParam("type") String type,@QueryParam("c") int cat, @QueryParam("l") String location) {
-     
-        if (!"".equals(cat) && !"".equals(location))  {
-             return userDao.GetUsersByTypeWithParms(type,cat,location);
-        }
-        else {
-            return userDao.GetUsersByType(type);
-        }
-        
+    public List<User> getUsersbyType(@PathParam("type") String type) {
+        return userDao.GetUsersByType(type);
     }
     
     @GET
@@ -70,7 +67,12 @@ public class UserService {
             @FormParam("type") String type,
             @FormParam("phone") int phone,
             @FormParam("location") String location,
+            @FormParam("description") String descripton,
+            @FormParam("feePrice") double feePrice,
+            @FormParam("hourPrice") double hourPrice,
+            @FormParam("service") String serviceName,
             @FormParam("userImg") String userImg,
+            
             @Context HttpServletResponse servletResponse){
             System.out.println("creating new user");
             System.out.println("nome:" + nome);
@@ -79,8 +81,15 @@ public class UserService {
             System.out.println("type:" + type);
             System.out.println("phone:" + phone);
             System.out.println("location:" + location);
+            System.out.println("creating new Service:");
+            System.out.println("nome:" + serviceName);
+            System.out.println("descripton:" + descripton);
+            System.out.println("feePrice:" + feePrice);
+            System.out.println("hourPrice:" + hourPrice);
+            
             User user = new User();
-         
+           
+            
             user.setName(nome);
             user.setEmail(email);
             user.setPassWord(password);
@@ -89,8 +98,23 @@ public class UserService {
             user.setUserImg(userImg);
             user.setType(type);
             
+         
             userDao.create(user);
-           
+          
+            
+            
+            if(type == "professional"){ 
+                Service service = new Service();
+                
+                service.setTitle(serviceName);
+                service.setDescription(descripton);
+                service.setFeePrice(feePrice);
+                service.setHourPrice(hourPrice);
+
+                user.addService(service);
+                serviceDAO.create(service);
+             }
+
             return "1";                  
     }
     
