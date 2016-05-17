@@ -28,15 +28,18 @@ public class ContactService implements Serializable {
 
     public ContactService() {
     }
-    
+
+    //nome incorreto é preciso mudar...
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private double hours;
-     
+
     @Temporal(TemporalType.DATE)
     private Date date;
     private String description;
-   
+
     @ManyToOne
     private User user;
 
@@ -47,7 +50,7 @@ public class ContactService implements Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-    
+
     @OneToOne
     private Contact contact;
 
@@ -61,6 +64,10 @@ public class ContactService implements Serializable {
 
     public Date getDate() {
         return date;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setDate(Date date) {
@@ -83,8 +90,4 @@ public class ContactService implements Serializable {
         this.user = user;
     }
 
- 
-
-    
-    
 }

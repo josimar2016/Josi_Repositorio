@@ -46,7 +46,10 @@ public class Contact implements Serializable {
     private Date date;
     
     @ManyToOne
-    private User user;
+    private User client;
+    
+    @ManyToOne
+    private User professional;
     
     @ManyToOne
     private Service service;
@@ -75,17 +78,25 @@ public class Contact implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public User getProfessional() {
+        return professional;
+    }
+
+    public void setProfessional(User professional) {
+        this.professional = professional;
+    }
+
+  
     
-    @XmlTransient
-    @JsonIgnore
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @XmlTransient
     @JsonIgnore
     public Service getService() {

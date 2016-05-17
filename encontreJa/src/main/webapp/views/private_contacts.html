@@ -1,0 +1,42 @@
+
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h2 class="big-title">Contactos recebidos</h2>
+
+                <table class="table table-striped">
+                    <tr>
+                      
+                        <th>Data</th>
+                        <th>Origem</th>
+                        <th>Descrição</th>
+                        <th>Horas estimadas</th>
+
+                    </tr>
+                    <tr ng-repeat="contact in contacts">
+
+                      
+                        <td>{{ contact.date | date:'medium' }}</td>
+                        <td>email: {{ contact.client.email }} <br> telefone: {{ contact.client.phone }}</td>
+                        <td>{{ contact.description}}</td>
+                        <td>{{ contact.estimatedHours}}</td>
+                        
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="col-md-3">
+
+
+                <p>
+                    <a href="#" class="btn btn-larg btn-effect">Editar informações</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+

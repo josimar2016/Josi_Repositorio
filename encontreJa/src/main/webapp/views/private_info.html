@@ -1,0 +1,128 @@
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h2 class="big-title">Alterar dados pessoais</h2>
+                <!-- Form -->
+
+                <div class="login-box-body">
+                    <form role="form" ng-submit="processForm()">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                                    <input type="text" name="nome" id = "name" class = "form-control" ng-model="formData.nome" required placeholder = "Nome"/>
+                                    <span ng-show="form.nome.$dirty && form.nome.$error.required" class="help-block"> Nome obrigatorio</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                                    <input type="text" name="email" id = "email" class = "form-control" ng-model="formData.email" required placeholder = "Email"/>
+                                    <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block"> Email obrigatorio</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+                                    <input type="text" name="phone" id ="phone" class = "form-control" ng-model="formData.phone" required placeholder = "Telefone"/>
+                                    <span ng-show="form.phone.$dirty && form.phone.$error.required" class="help-block"> Telefone obrigatorio</span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.location.$dirty && form.location.$error.required }">
+
+                                    <select name="location" class="form-control" ng-model="formData.location">
+                                        <option style="display:none" value="">Seleccionar Localidade</option>
+                                        <option>Aveiro</option>
+                                        <option>Beja</option>
+                                        <option>Braga</option>
+                                        <option>Bragança</option>
+                                        <option>Castelo Branco</option>
+                                        <option>Coimbra</option>
+                                        <option>Évora</option>
+                                        <option>Faro</option>
+                                        <option>Guarda</option>
+                                        <option>Leiria</option>
+                                        <option>Lisboa</option>
+                                        <option>Portalegre</option>
+                                        <option>Porto</option>
+                                        <option>Santarém</option>
+                                        <option>Setúbal</option>
+                                        <option>Viana do Castelo</option>
+                                        <option>Vila Real</option>
+                                        <option>Viseu</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                                    <input type="password" name="password" id="password" class="form-control" ng-model="formData.password" required placeholder="Password"/>
+                                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block"> Password obrigatorio</span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-8">
+                                <h3>
+                                    O seu serviço
+                                </h3></div>
+                            <div class="col-md-8">
+
+
+
+                                <select ng-options="category as category.name for category in  categories" ng-model="formData.category" class="form-control">
+                                    <option style="display:none" value="">Seleccionar área</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+
+                                <textarea class="form-control" placeholder="Descrição do seu serviço" rows="9" ng-model="formData.description" ></textarea>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.hourprice.$dirty && form.hourprice.$error.required }">
+                                    <input type="number" class="form-control" id="hourPrice"  name="hourPrice" ng-model="formData.hourPrice" required placeholder="Custo Hora">
+                                    <span ng-show="form.hourPrice.$dirty && form.hourPrice.$error.required" class="help-block"> preço da hora obrigatorio.</span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-8">
+                                <div class="form-group" ng-class="{ 'has-error': form.feePrice.$dirty && form.feePrice.$error.required }">
+                                    <input type="number" class="form-control" id="feePrice"  name="feePrice" ng-model="formData.feePrice" required  placeholder="Custo Deslocação">
+                                    <span ng-show="form.feePrice.$dirty && form.feePrice.$error.required" class="help-block"> Custo Deslocação obrigatorio.</span>
+                                </div>
+                            </div>
+
+
+                            <input type="hidden"  ng-model="formData.type" ng-init="formData.type = type" />
+                            <input type="hidden"  ng-model="formData.userImg" ng-init="formData.userImg = userImg" />
+
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">{{btnsubmit}}</button>
+                                <button  class= 'btn bt' onclick="window.location.href = '#/index'">Cancel</button>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12"> {{message}} 
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+          <div class="col-md-3">
+             
+               
+                <p>
+                    <a href="#" class="btn btn-larg btn-effect">Ver contactos recebidos</a>
+                </p>
+            </div>
+
+        </div>
+</section>

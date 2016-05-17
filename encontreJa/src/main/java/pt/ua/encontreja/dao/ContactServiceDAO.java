@@ -23,8 +23,6 @@ public class ContactServiceDAO extends AbstractFacade<ContactService>{
          super(ContactService.class);
     }
     
-
-
     public ContactServiceDAO(Class<ContactService> entityClass) {
         super(entityClass);
     }

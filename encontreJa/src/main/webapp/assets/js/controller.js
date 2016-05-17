@@ -4,42 +4,46 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
                 when('/register', {
                     templateUrl: 'views/register.html',
-                    controller: 'CreateUserController',
+                    controller: 'CreateUserController'
                 }).
                 when('/register_professional', {
                     templateUrl: 'views/register_professional.html',
-                    controller: 'CreateUserProController',
+                    controller: 'CreateUserProController'
                 }).
                 when('/login', {
                     templateUrl: 'views/login.html',
-                    controller: 'loginController',
+                    controller: 'loginController'
                 }).
                 when('/people', {
                     templateUrl: 'views/people.html',
-                    controller: 'peopleController',
+                    controller: 'peopleController'
                 }).
                 when('/people/:id', {
                     templateUrl: 'views/people_detail.html',
-                    controller: 'peopleDetController',
+                    controller: 'peopleDetController'
                 }).
                 when('/contact/:id', {
                     templateUrl: 'views/contact_person.html',
-                    controller: 'contactPersonController',
+                    controller: 'contactPersonController'
                 }).
-                 when('/logout', {
+                when('/logout', {
                     templateUrl: 'views/start.html',
-                    controller: 'LogoutController',
+                    controller: 'LogoutController'
                 }).
                 when('/search', {
                     templateUrl: 'views/search.html',
-                    controller: 'searchController',
+                    controller: 'searchController'
+                }).
+                when('/private_contacts', {
+                    templateUrl: 'views/private_contacts.html',
+                    controller: 'privateContactsController'
                 }).otherwise({
             templateUrl: 'views/start.html'
         });
     }]);
-mainApp.controller('LogoutController', function ( $cookieStore, $window) {
+mainApp.controller('LogoutController', function ($cookieStore, $window) {
     $cookieStore.remove("user");
-     $window.location.href = 'index.html';
+    $window.location.href = 'index.html';
 
 
 });
@@ -70,6 +74,18 @@ mainApp.controller('mainAppCtrl', function ($scope, $cookieStore, $rootScope, $h
     }
 
 
+
+
+
+});
+mainApp.controller('privateContactsController', function ($scope, $http, $location, $cookieStore) {
+
+
+    var url = "api/contact/" + $cookieStore.get("user");
+   
+    $http.get(url).success(function (response) {
+        $scope.contacts = response;
+    });
 
 
 

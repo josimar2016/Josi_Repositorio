@@ -32,7 +32,17 @@ public class ContactDAO extends AbstractFacade<Contact> {
     public List<Contact> getAllContact() {
         return super.findAll();
     }
+    
+    public List getAllContactsToUser(int id) {
 
+        String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = 'professional'";
+
+        
+        return em.createQuery(q).setParameter("id", id).getResultList();
+       
+
+    }
+    
     public int editContact(Contact contact) {
         super.edit(contact);
         return 1;

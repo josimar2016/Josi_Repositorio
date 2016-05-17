@@ -58,7 +58,6 @@ public class UserService {
 
             return userDao.GetUsersByTypeWithParms(type, cat, location);
         } else {
-            System.out.println("entrei2");
             return userDao.GetUsersByType(type);
         }
 
