@@ -34,6 +34,10 @@ mainApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'views/search.html',
                     controller: 'searchController'
                 }).
+                 when('/private_info', {
+                    templateUrl: 'views/private_info.html',
+                    controller: 'privateDetails'
+                }).
                 when('/private_contacts', {
                     templateUrl: 'views/private_contacts.html',
                     controller: 'privateContactsController'
@@ -62,7 +66,7 @@ mainApp.controller('mainAppCtrl', function ($scope, $cookieStore, $rootScope, $h
 
 
 
-        var url = "api/user/" + $cookieStore.get("user")
+        var url = "api/user/" + $cookieStore.get("user");
 
         $http.get(url).success(function (response) {
 
@@ -73,11 +77,59 @@ mainApp.controller('mainAppCtrl', function ($scope, $cookieStore, $rootScope, $h
         });
     }
 
+});
 
 
+mainApp.controller('privateDetails', function ($scope, $http, $location, $cookieStore) {
 
+    
+   
+
+    $http.get("api/category").success(function (response) {
+        $scope.formData.categories = response;
+   
+    
+        var url = "api/user/" + $cookieStore.get("user");
+
+        $http.get(url).success(function (response) {
+            $scope.formData.nome = response.name;
+            $scope.formData.location = response.location;
+            $scope.formData.email = response.email;
+            $scope.formData.phone = response.phone;
+            $scope.formData.password = response.password;
+            $scope.formData.description = response.serviceList[0].description;
+            $scope.formData.hourPrice = response.serviceList[0].hourPrice;
+            $scope.formData.feePrice = response.serviceList[0].feePrice;
+            $scope.formData.selectedCategory = response.serviceList[0].category;
+
+            $scope.btnsubmit = "Gravar alterações";
+
+        });
+    });
+
+
+    $scope.processForm = function () {
+        $http({
+            method: 'PUT',
+            url: 'api/user/' + $cookieStore.get("user"),
+            data: $.param($scope.formData), // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
+        })
+                .error(function () {
+
+
+                    $scope.message = 'Erro ao efetuar a alteração.';
+                })
+                .success(function () {
+
+                    $scope.message = 'Alterado com sucesso!.';
+                });
+
+    };
 
 });
+
+
 mainApp.controller('privateContactsController', function ($scope, $http, $location, $cookieStore) {
 
 
@@ -157,7 +209,7 @@ mainApp.controller('loginController', function ($scope, $http, $cookieStore, $wi
 
                     $window.location.href = 'index.html';
                 });
-    }
+    };
 
 });
 
@@ -179,7 +231,7 @@ mainApp.controller('contactPersonController', function ($scope, $http) {
 mainApp.controller('CreateUserController', function ($scope, $http) {
 
     $scope.btnsubmit = "Registar";
-    $scope.titulo = "Criar novo Utilizador"
+    $scope.titulo = "Criar novo Utilizador";
     $scope.type = "client";
     $scope.userImg = "team-01.png";
     $scope.formData = {};
@@ -207,8 +259,8 @@ mainApp.controller('CreateUserController', function ($scope, $http) {
 
 
 mainApp.controller('CreateUserProController', function ($scope, $http) {
-    $scope.btnsubmit = "Registar Pro"
-    $scope.titulo = "Criar novo Profissional"
+    $scope.btnsubmit = "Registar Pro";
+    $scope.titulo = "Criar novo Profissional";
     $scope.type = "professional";
     $scope.userImg = "team-01.png";
 

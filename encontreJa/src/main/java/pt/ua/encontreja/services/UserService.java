@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pt.ua.encontreja.services;
 
 import java.util.List;
@@ -15,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,20 +23,17 @@ import pt.ua.encontreja.dao.ServiceDAO;
 import pt.ua.encontreja.entity.Category;
 import pt.ua.encontreja.entity.Service;
 
-/**
- *
- * @author arrais
- */
+
 @Stateless
 @Path("/user")
 public class UserService {
 
     @EJB
     UserDAO userDao;
-    
+
     @EJB
     CategoryDAO categoryDAO;
-    
+
     @EJB
     ServiceDAO serviceDAO;
 
@@ -88,12 +82,10 @@ public class UserService {
             @FormParam("userImg") String userImg,
             @Context HttpServletResponse servletResponse) {
 
-      
-   
-        if(userDao.userExistsByEmail(email) > 0 ) {
+        if (userDao.userExistsByEmail(email) > 0) {
             return null;
         }
-    
+
         User user = new User();
 
         user.setName(nome);
@@ -106,15 +98,14 @@ public class UserService {
 
         userDao.create(user);
         //System.out.println("category:" + category);
-        if (type.toLowerCase().indexOf("professional") > -1) {
-           
+        if (type.toLowerCase().contains("professional")) {
+
             Service service = new Service();
 
-           
             service.setDescription(descripton);
             service.setFeePrice(feePrice);
             service.setUser(user);
-            
+
             service.setHourPrice(hourPrice);
             Category cat = categoryDAO.find(category);
             service.setTitle(cat.getName());
@@ -126,32 +117,53 @@ public class UserService {
         return user;
     }
 
-    @POST
+    @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String editCUser(
-            @FormParam("id_user") int id_user,
+    public void editCUser(
+            @PathParam("id") int id,
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
-            @FormParam("type") String type,
             @FormParam("phone") int phone,
             @FormParam("location") String location,
-            @FormParam("userImg") String userImg,
+            @FormParam("description") String descripton,
+            @FormParam("feePrice") double feePrice,
+            @FormParam("hourPrice") double hourPrice,
+            @FormParam("service") String serviceName,
+            @FormParam("selectedCategory[id]") int category,
             @Context HttpServletResponse servletResponse) {
 
-        User user = new User();
-        user.setId(id_user);
+     
+        User user = userDao.find(id);
+       
         user.setName(nome);
         user.setEmail(email);
-        user.setPassWord(password);
+        if (password.length() >0) {
+            user.setPassWord(password);
+        }
         user.setPhone(phone);
         user.setLocation(location);
-        user.setType(type);
-        user.setUserImg(userImg);
+        
+        if (user.getType().toLowerCase().contains("professional")) {
+         
+            Service service = user.getServiceList().get(0);
 
-        userDao.create(user);
-        return "1";
+            service.setDescription(descripton);
+            service.setFeePrice(feePrice);
+            service.setUser(user);
+            service.setHourPrice(hourPrice);
+
+            Category cat = categoryDAO.find(category);
+
+            service.setTitle(cat.getName());
+            service.setCategory(cat);
+            user.addService(service);
+
+            serviceDAO.edit(service);
+        }
+
+        userDao.edit(user);
 
     }
 
