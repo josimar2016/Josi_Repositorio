@@ -80,27 +80,31 @@ mainApp.controller('mainAppCtrl', function ($scope, $cookieStore, $rootScope, $h
 });
 
 
-mainApp.controller('privateDetails', function ($scope, $http, $location, $cookieStore) {
+mainApp.controller('privateDetails', function ($scope, $http, $cookieStore) {
 
     
-   
+   if ($cookieStore.get("user-type") == "professional") {
+        $scope.showProfessional = true;
+    }
 
     $http.get("api/category").success(function (response) {
         $scope.formData.categories = response;
    
     
         var url = "api/user/" + $cookieStore.get("user");
-
+        
         $http.get(url).success(function (response) {
             $scope.formData.nome = response.name;
             $scope.formData.location = response.location;
             $scope.formData.email = response.email;
             $scope.formData.phone = response.phone;
             $scope.formData.password = response.password;
-            $scope.formData.description = response.serviceList[0].description;
-            $scope.formData.hourPrice = response.serviceList[0].hourPrice;
-            $scope.formData.feePrice = response.serviceList[0].feePrice;
-            $scope.formData.selectedCategory = response.serviceList[0].category;
+            if ($scope.showProfessional) {
+                $scope.formData.description = response.serviceList[0].description;
+                $scope.formData.hourPrice = response.serviceList[0].hourPrice;
+                $scope.formData.feePrice = response.serviceList[0].feePrice;
+                $scope.formData.selectedCategory = response.serviceList[0].category;
+            };
 
             $scope.btnsubmit = "Gravar alterações";
 
@@ -133,11 +137,21 @@ mainApp.controller('privateDetails', function ($scope, $http, $location, $cookie
 mainApp.controller('privateContactsController', function ($scope, $http, $location, $cookieStore) {
 
 
-    var url = "api/contact/" + $cookieStore.get("user");
+    var url = "api/contact/" + $cookieStore.get("user") + "/" + $cookieStore.get("user-type");
    
-    $http.get(url).success(function (response) {
-        $scope.contacts = response;
-    });
+    if ($cookieStore.get("user-type") == "professional") {
+        $scope.title = "Contactos recebidos";
+        $scope.showProfessional = true;
+        $http.get(url).success(function (response) {
+            $scope.contacts = response;
+        });
+    } else {
+        $scope.title = "Contactos enviados";
+        $scope.showClient = true;
+        $http.get(url).success(function (response) {
+            $scope.contacts = response;
+        });
+    };
 
 
 
@@ -206,6 +220,7 @@ mainApp.controller('loginController', function ($scope, $http, $cookieStore, $wi
                 .success(function (data) {
                     $scope.login_data = data;
                     $cookieStore.put("user", data.id);
+                    $cookieStore.put("user-type", data.type);
 
                     $window.location.href = 'index.html';
                 });

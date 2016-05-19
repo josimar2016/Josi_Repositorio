@@ -33,12 +33,14 @@ public class ContactDAO extends AbstractFacade<Contact> {
         return super.findAll();
     }
     
-    public List getAllContactsToUser(int id) {
+    public List getAllContactsToUser(int id,String userType) {
 
-        String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = 'professional'";
+        String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType";
 
-        
-        return em.createQuery(q).setParameter("id", id).getResultList();
+        System.out.println("userType:" + userType);
+        return em.createQuery(q).setParameter("id", id)
+                .setParameter("userType", userType)
+                .getResultList();
        
 
     }

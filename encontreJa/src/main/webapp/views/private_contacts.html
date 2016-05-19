@@ -3,8 +3,9 @@
 <section id="content">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <h2 class="big-title">Contactos recebidos</h2>
+            <div class="col-md-9" >
+            <div ng-show="showProfessional">
+                <h2 class="big-title">{{ title }}</h2>
 
                 <table class="table table-striped">
                     <tr>
@@ -28,6 +29,31 @@
 
 
             </div>
+            <div ng-show="showClient">
+                <h2 class="big-title">{{ title }}</h2>
+
+                <table class="table table-striped">
+                    <tr>
+                      
+                        <th>Data</th>
+                        <th>Destino</th>
+                        <th>Descrição</th>
+                        <th>Horas estimadas</th>
+
+                    </tr>
+                    <tr ng-repeat="contact in contacts">
+
+                      
+                        <td>{{ contact.date | date:'medium' }}</td>
+                        <td>email: {{ contact.professional.email }} <br> telefone: {{ contact.professional.phone }}</td>
+                        <td>{{ contact.description}}</td>
+                        <td>{{ contact.estimatedHours}}</td>
+                        
+                    </tr>
+                </table>
+
+
+            </div></div>
             <div class="col-md-3">
 
 

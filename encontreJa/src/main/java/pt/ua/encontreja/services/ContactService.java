@@ -43,11 +43,16 @@ public class ContactService {
     }
     
     @GET
-    @Path("/{id}")
+    @Path("/{id}/{userTtype}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Contact> getContact(@PathParam("id") int id) {
-        return contactDAO.getAllContactsToUser(id);
+    public List<Contact> getContact(@PathParam("id") int id, 
+            @PathParam("userTtype") String userTtype
+            ) 
+    {
+        return contactDAO.getAllContactsToUser(id,userTtype);
     }
+    
+    
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)

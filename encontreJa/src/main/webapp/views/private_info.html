@@ -70,6 +70,7 @@
                                 </div>
 
                             </div>
+                            <div ng-show="showProfessional">
                             <div class="col-md-8">
                                 <h3>
                                     O seu serviço
@@ -88,21 +89,21 @@
 
                             </div>
                             <div class="col-md-8">
-                                <div class="form-group" ng-class="{ 'has-error': form.hourprice.$dirty && form.hourprice.$error.required }">
-                                    <input type="number" class="form-control" id="hourPrice"  name="hourPrice" ng-model="formData.hourPrice" required placeholder="Custo Hora">
-                                    <span ng-show="form.hourPrice.$dirty && form.hourPrice.$error.required" class="help-block"> preço da hora obrigatorio.</span>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" id="hourPrice"  name="hourPrice" ng-model="formData.hourPrice" placeholder="Custo Hora">
+                                    
                                 </div>
                             </div>
 
 
 
                             <div class="col-md-8">
-                                <div class="form-group" ng-class="{ 'has-error': form.feePrice.$dirty && form.feePrice.$error.required }">
-                                    <input type="number" class="form-control" id="feePrice"  name="feePrice" ng-model="formData.feePrice" required  placeholder="Custo Deslocação">
-                                    <span ng-show="form.feePrice.$dirty && form.feePrice.$error.required" class="help-block"> Custo Deslocação obrigatorio.</span>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" id="feePrice"  name="feePrice" ng-model="formData.feePrice"  placeholder="Custo Deslocação">
+                                    
                                 </div>
                             </div>
-
+                            </div>
 
                             <input type="hidden"  ng-model="formData.type" ng-init="formData.type = type" />
                             <input type="hidden"  ng-model="formData.userImg" ng-init="formData.userImg = userImg" />
@@ -123,7 +124,7 @@
              
                
                 <p>
-                    <a href="#private_contacts" class="btn btn-larg btn-effect">Ver contactos recebidos</a>
+                    <a href="#private_contacts" class="btn btn-larg btn-effect">Ver contactos</a>
                 </p>
             </div>
 
