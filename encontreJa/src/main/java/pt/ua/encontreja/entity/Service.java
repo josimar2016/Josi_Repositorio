@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
@@ -20,10 +16,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-/**
- *
- * @author arrais
- */
+
 @Entity
 @Table(name="Service")
 public class Service implements Serializable {
@@ -35,9 +28,7 @@ public class Service implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public int getId() {
-        return id;
-    }
+   
             
     private String title;
     private String description;
@@ -62,6 +53,13 @@ public class Service implements Serializable {
         this.ratingList = new ArrayList<>();
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public int getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }

@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pt.ua.encontreja.services;
 
-/**
- *
- * @author mezca
- */
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
@@ -17,9 +10,6 @@ import javax.ws.rs.core.Response;
 import pt.ua.encontreja.dao.UserDAO;
 import pt.ua.encontreja.entity.User;
 
-/**
- * @author Tiago Coelho
- */
 @Stateless
 @Path("/auth")
 public class AuthService {

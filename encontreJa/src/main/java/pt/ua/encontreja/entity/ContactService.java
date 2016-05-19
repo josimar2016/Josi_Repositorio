@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
@@ -18,10 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author arrais
- */
+
 @Entity
 @Table(name = "ContactService")
 public class ContactService implements Serializable {
