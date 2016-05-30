@@ -9,6 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletResponse;
@@ -72,27 +74,38 @@ public class ContactService {
             @FormParam("idProfessional") int professional,
             @FormParam("idService") int idService,
             @Context HttpServletResponse servletResponse) {
+            //Nota: Remove the unused method parameter(s) "servletResponse"!!!
         
-        System.out.println("idService:" + idService);
-        System.out.println("professional:" + professional);
-        System.out.println("client:" + client);
-        System.out.println("descricao:" + description);
-        System.out.println("estimatedHours:" + estimatedHours);
+        
+        
+//        System.out.println("idService:" + idService);
+        Logger logger = Logger.getAnonymousLogger();
+        
+        logger.log(Level.INFO, "idService:{0}", idService);
+        
+//        System.out.println("professional:" + professional);
+//        System.out.println("client:" + client);
+//        System.out.println("descricao:" + description);
+//        System.out.println("estimatedHours:" + estimatedHours);
+        logger.log(Level.INFO, "professional:{0}", professional);
+        logger.log(Level.INFO, "client:{0}", client);
+        logger.log(Level.INFO, "descricao:{0}", description);
+        logger.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
+        
+        
         User userClient = userDao.find(client);
-        System.out.println("encontrei cliente:" + (userClient == null));
-//        if (userClient == null) {
-//            return Response.noContent();
-//        }
-        System.out.println("encontrei cliente:" + userClient.getEmail());
+//        System.out.println("encontrei cliente:" + (userClient == null));
+        logger.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
+        
+        
+//        System.out.println("encontrei cliente:" + userClient.getEmail());
+        logger.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
+        
         User professionalUser = userDao.find(professional);
-//        if (professionalUser == null) {
-//            return Response.noContent();
-//        }
+
         
         Service service = serviceDao.find(idService);
-//        if (service == null) {
-//            return Response.noContent();
-//        }
+
         Contact contact = new Contact();
         contact.setDescription(description);
         contact.setClient(userClient);

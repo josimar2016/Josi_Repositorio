@@ -19,7 +19,7 @@ public class AuthService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response authenticateUser(@FormParam("email") String email,
-            @FormParam("password") String password) {
+            @FormParam("password") String password) throws Throwable{
 
         try {
             User user = userDao.getUserByAuth(email, password);
@@ -30,6 +30,7 @@ public class AuthService {
             Response.status(Response.Status.UNAUTHORIZED).build();
             throw e;
             //return Response.status(Response.Status.UNAUTHORIZED).build();
+            // Nota: Depois remover o  comentário!!!!
 
         } catch (Exception e) {
             throw new RuntimeException(e);

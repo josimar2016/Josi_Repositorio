@@ -30,8 +30,6 @@ public class User implements Serializable {
     private int phone;
     private String location;
 
-//    @OneToMany(mappedBy = "User", cascade={CascadeType.ALL}, orphanRemoval=true)
-//    private List<Contact> contactList;
     @OneToMany(mappedBy = "User", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Service> serviceList;
 
@@ -42,7 +40,6 @@ public class User implements Serializable {
     private Rating rating;
 
     public User() {
-        //this.contactList = new ArrayList<>();
         this.serviceList = new ArrayList<>();
         this.contactServiceList = new ArrayList<>();
     }
@@ -113,14 +110,6 @@ public class User implements Serializable {
         this.location = location;
     }
 
-//    @XmlTransient
-//    @JsonIgnore
-//    public List<Contact> getcontactList() {
-//        return contactList;
-//    }
-//    public void setcontactList(List<Contact> contactList) {
-//        this.contactList = contactList;
-//    }
     public List<Service> getServiceList() {
         return serviceList;
     }
@@ -147,13 +136,6 @@ public class User implements Serializable {
         this.rating = rating;
     }
 
-//    public void addContact(Contact contact){
-//        contactList.add(contact);
-//    }
-//    
-//    public void removeContact(Contact contact){
-//        contactList.remove(contact);
-//    }
     public void addService(Service service) {
         serviceList.add(service);
     }

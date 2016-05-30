@@ -27,13 +27,11 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "Category", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Service> serviceList;
 
-    public Category(List<Service> serviceList) {
+    public Category() {
         this.serviceList = new ArrayList<>();
     }
 
-    public Category() {
-    }
-
+   
     @XmlTransient
     @JsonIgnore
     public List<Service> getServiceList() {

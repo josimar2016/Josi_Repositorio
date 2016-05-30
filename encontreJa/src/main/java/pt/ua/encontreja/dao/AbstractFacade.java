@@ -8,7 +8,8 @@ import javax.persistence.EntityManager;
 
 public abstract class AbstractFacade<T> {
 
-    public Class<T> entityClass;
+//    public Class<T> entityClass;
+    private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;

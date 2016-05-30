@@ -2,11 +2,12 @@
 package pt.ua.encontreja.dao;
 
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.Contact;
-
+import java.util.logging.Logger;
 
 @Stateless
 public class ContactDAO extends AbstractFacade<Contact> {
@@ -30,10 +31,14 @@ public class ContactDAO extends AbstractFacade<Contact> {
 
         String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType";
 
-        System.out.println("userType:" + userType);
-        return em.createQuery(q).setParameter("id", id)
+//        System.out.println("userType:" + userType);
+        Logger logger = Logger.getAnonymousLogger();
+        
+        logger.log(Level.INFO, "userType:{0}", userType);
+        
+        return (em.createQuery(q).setParameter("id", id)
                 .setParameter("userType", userType)
-                .getResultList();
+                .getResultList());
        
 
     }

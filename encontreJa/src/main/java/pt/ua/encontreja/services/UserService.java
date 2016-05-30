@@ -98,6 +98,7 @@ public class UserService {
 
         userDao.create(user);
         //System.out.println("category:" + category);
+        
         if (type.toLowerCase().contains("professional")) {
 
             Service service = new Service();

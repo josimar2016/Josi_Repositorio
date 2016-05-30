@@ -1,10 +1,12 @@
 package pt.ua.encontreja.dao;
 
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.User;
+import java.util.logging.Logger;
 
 @Stateless
 public class UserDAO extends AbstractFacade<User> {
@@ -24,11 +26,10 @@ public class UserDAO extends AbstractFacade<User> {
 
         String q = "SELECT u FROM User u WHERE u.email = :email and u.password = :password";
 
-        User user = (User) em.createQuery(q)
+        return ((User) em.createQuery(q)
                 .setParameter("email", email)
                 .setParameter("password", password)
-                .getSingleResult();
-        return (user);
+                .getSingleResult());
     }
 
     public int userExistsByEmail(String email) {
@@ -41,15 +42,19 @@ public class UserDAO extends AbstractFacade<User> {
                 .setParameter("email", email)
                 .getResultList().size();
 
-        System.out.println("first:" + res);
-        return (res);
+//        System.out.println("first:" + res);
+        Logger logger = Logger.getAnonymousLogger();
+
+        logger.log(Level.INFO, "first:{0}", res);
+
+        return res;
     }
 
     public List<User> getUsersByType(String type) {
 
         String q = "SELECT u FROM User u WHERE u.type LIKE :type";
 
-        return (em.createQuery(q).setParameter("type", type).getResultList());
+        return em.createQuery(q).setParameter("type", type).getResultList();
     }
 
     public List<User> getUsersByTypeWithParms(String type, int cat, String location) {
@@ -57,11 +62,11 @@ public class UserDAO extends AbstractFacade<User> {
         String q = "SELECT u FROM User u, Service s, Category c \n"
                 + " WHERE u.id = s.id and s.id = c.id and u.type LIKE :type and c.id = :cid and u.location = :location";
 
-        return (em.createQuery(q)
+        return em.createQuery(q)
                 .setParameter("type", type)
                 .setParameter("cid", cat)
                 .setParameter("location", location)
-                .getResultList());
+                .getResultList();
 
     }
 

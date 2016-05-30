@@ -43,9 +43,6 @@ public class Service implements Serializable {
     private List<Rating> ratingList;
 
     public Service() {
-    }
-
-    public Service(List<Contact> contactList, List<Rating> ratingList) {
         this.contactList = new ArrayList<>();
         this.ratingList = new ArrayList<>();
     }
