@@ -112,7 +112,7 @@ public class Service implements Serializable {
         return contactList;
     }
 
-    public void setContactList(List<Contact> contactList) throws IOException, ClassNotFoundException{
+    public void setContactList(List<Contact> contactList){
         this.contactList = contactList;
     }
 

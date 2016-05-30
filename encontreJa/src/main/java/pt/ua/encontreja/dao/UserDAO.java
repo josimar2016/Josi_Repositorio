@@ -5,10 +5,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @Stateless
 public class UserDAO extends AbstractFacade<User> {
-
+    static final Logger log = Logger.getLogger("UserDAO");
+    
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
 
@@ -24,10 +28,10 @@ public class UserDAO extends AbstractFacade<User> {
 
         String q = "SELECT u FROM User u WHERE u.email = :email and u.password = :password";
 
-        return ((User) em.createQuery(q)
+        return (User) em.createQuery(q)
                 .setParameter("email", email)
                 .setParameter("password", password)
-                .getSingleResult());
+                .getSingleResult();
     }
 
     public int userExistsByEmail(String email) {
@@ -39,8 +43,13 @@ public class UserDAO extends AbstractFacade<User> {
         res = em.createQuery(q)
                 .setParameter("email", email)
                 .getResultList().size();
+        
+        
+//        System.out.println("first:" + res);
 
-        System.out.println("first:" + res);
+        log.setLevel(Level.ALL);
+        log.log(Level.INFO, "first:{0}", res);
+        
         return res;
     }
 

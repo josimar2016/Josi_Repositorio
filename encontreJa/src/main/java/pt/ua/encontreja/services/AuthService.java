@@ -26,7 +26,7 @@ public class AuthService {
 
             return Response.ok(user).build();
 
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
     }

@@ -30,11 +30,14 @@ import pt.ua.encontreja.dao.UserDAO;
 import pt.ua.encontreja.entity.Contact;
 import pt.ua.encontreja.entity.Service;
 import pt.ua.encontreja.entity.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless
 @Path("/contact")
 public class ContactService {
 
+    static final Logger log = Logger.getLogger("ContactService");
     @EJB
     ContactDAO contactDAO;
 
@@ -71,19 +74,29 @@ public class ContactService {
             @FormParam("idService") int idService,
             @Context HttpServletResponse servletResponse) {
         //Nota: Remove the unused method parameter(s) "servletResponse"!!!
-
-        System.out.println("idService:" + idService);
-
-        System.out.println("professional:" + professional);
-        System.out.println("client:" + client);
-        System.out.println("descricao:" + description);
-        System.out.println("estimatedHours:" + estimatedHours);
+        
+        log.setLevel(Level.ALL);
+        log.log(Level.INFO, "idService:{0}", idService);
+        log.log(Level.INFO, "professional:{0}", professional);
+        log.log(Level.INFO, "client:{0}", client);
+        log.log(Level.INFO, "descricao:{0}", description);
+        log.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
+        
+//        System.out.println("idService:" + idService);
+//        System.out.println("professional:" + professional);
+//        System.out.println("client:" + client);
+//        System.out.println("descricao:" + description);
+//        System.out.println("estimatedHours:" + estimatedHours);
 
         User userClient = userDao.find(client);
-        System.out.println("encontrei cliente:" + (userClient == null));
+        log.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
+        
+//        System.out.println("encontrei cliente:" + (userClient == null));
 
-        System.out.println("encontrei cliente:" + userClient.getEmail());
-
+//        System.out.println("encontrei cliente:" + userClient.getEmail());
+        log.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
+        
+        
         User professionalUser = userDao.find(professional);
 
         Service service = serviceDao.find(idService);
