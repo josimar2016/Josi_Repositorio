@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pt.ua.encontreja.services;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,37 +34,34 @@ import pt.ua.encontreja.entity.Service;
 import pt.ua.encontreja.entity.User;
 
 @Stateless
-@Path("/contact") 
+@Path("/contact")
 public class ContactService {
-    
+
     @EJB
     ContactDAO contactDAO;
-    
+
     @EJB
     UserDAO userDao;
-    
+
     @EJB
     ServiceDAO serviceDao;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Contact> getAll() {
         return contactDAO.findAll();
-       
+
     }
-    
+
     @GET
     @Path("/{id}/{userTtype}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Contact> getContact(@PathParam("id") int id, 
+    public List<Contact> getContact(@PathParam("id") int id,
             @PathParam("userTtype") String userTtype
-            ) 
-    {
-        return contactDAO.getAllContactsToUser(id,userTtype);
+    ) {
+        return contactDAO.getAllContactsToUser(id, userTtype);
     }
-    
-    
-    
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -74,36 +72,22 @@ public class ContactService {
             @FormParam("idProfessional") int professional,
             @FormParam("idService") int idService,
             @Context HttpServletResponse servletResponse) {
-            //Nota: Remove the unused method parameter(s) "servletResponse"!!!
-        
-        
-        
-//        System.out.println("idService:" + idService);
-        Logger logger = Logger.getAnonymousLogger();
-        
-        logger.log(Level.INFO, "idService:{0}", idService);
-        
-//        System.out.println("professional:" + professional);
-//        System.out.println("client:" + client);
-//        System.out.println("descricao:" + description);
-//        System.out.println("estimatedHours:" + estimatedHours);
-        logger.log(Level.INFO, "professional:{0}", professional);
-        logger.log(Level.INFO, "client:{0}", client);
-        logger.log(Level.INFO, "descricao:{0}", description);
-        logger.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
-        
-        
+        //Nota: Remove the unused method parameter(s) "servletResponse"!!!
+
+        System.out.println("idService:" + idService);
+
+        System.out.println("professional:" + professional);
+        System.out.println("client:" + client);
+        System.out.println("descricao:" + description);
+        System.out.println("estimatedHours:" + estimatedHours);
+
         User userClient = userDao.find(client);
-//        System.out.println("encontrei cliente:" + (userClient == null));
-        logger.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
-        
-        
-//        System.out.println("encontrei cliente:" + userClient.getEmail());
-        logger.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
-        
+        System.out.println("encontrei cliente:" + (userClient == null));
+
+        System.out.println("encontrei cliente:" + userClient.getEmail());
+
         User professionalUser = userDao.find(professional);
 
-        
         Service service = serviceDao.find(idService);
 
         Contact contact = new Contact();
@@ -114,13 +98,13 @@ public class ContactService {
         contact.setEstimatedHours(estimatedHours);
 
         Date dateobj = new Date();
-              
+
         contact.setDate(dateobj);
         contactDAO.create(contact);
         return Response.ok().build();
-        
+
     }
-    
+
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -129,23 +113,24 @@ public class ContactService {
             @FormParam("estimatedHours") double estimatedHours,
             @FormParam("data") String data,
             @FormParam("descricao") String descricao,
-            @Context HttpServletResponse servletResponse) throws ParseException{
-        
+            @Context HttpServletResponse servletResponse) throws ParseException {
+
         Contact contact = contactDAO.find(id);
-        
-         if(contact == null)
+
+        if (contact == null) {
             return String.valueOf(-1);
-         
+        }
+
         contact.setDescription(descricao);
         contact.setEstimatedHours(estimatedHours);
-        
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date data1 = null;
         data1 = df.parse(data);
-                
+
         contact.setDate(data1);
-         
-         return "Sucess";
-        
+
+        return "Sucess";
+
     }
 }

@@ -27,13 +27,11 @@ public class AuthService {
             return Response.ok(user).build();
 
         } catch (RuntimeException e) {
-            Response.status(Response.Status.UNAUTHORIZED).build();
             throw e;
-            //return Response.status(Response.Status.UNAUTHORIZED).build();
             // Nota: Depois remover o  comentário!!!!
-
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println(""+e.getLocalizedMessage());
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         }
     }
 }

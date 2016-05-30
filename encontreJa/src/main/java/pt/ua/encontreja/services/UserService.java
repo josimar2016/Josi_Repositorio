@@ -97,8 +97,6 @@ public class UserService {
         user.setType(type);
 
         userDao.create(user);
-        //System.out.println("category:" + category);
-        
         if (type.toLowerCase().contains("professional")) {
 
             Service service = new Service();

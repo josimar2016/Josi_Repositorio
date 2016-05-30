@@ -42,11 +42,7 @@ public class UserDAO extends AbstractFacade<User> {
                 .setParameter("email", email)
                 .getResultList().size();
 
-//        System.out.println("first:" + res);
-        Logger logger = Logger.getAnonymousLogger();
-
-        logger.log(Level.INFO, "first:{0}", res);
-
+        System.out.println("first:" + res);
         return res;
     }
 

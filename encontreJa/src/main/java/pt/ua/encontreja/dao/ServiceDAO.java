@@ -44,8 +44,6 @@ public class ServiceDAO extends AbstractFacade<Service>{
         if(service == null)
             return -1;
         return 1;
-        
-        //TO-DO
     }
     
     @Override

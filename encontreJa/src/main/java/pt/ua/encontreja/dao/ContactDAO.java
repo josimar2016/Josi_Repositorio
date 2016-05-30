@@ -31,10 +31,7 @@ public class ContactDAO extends AbstractFacade<Contact> {
 
         String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType";
 
-//        System.out.println("userType:" + userType);
-        Logger logger = Logger.getAnonymousLogger();
-        
-        logger.log(Level.INFO, "userType:{0}", userType);
+        System.out.println("userType:" + userType);
         
         return (em.createQuery(q).setParameter("id", id)
                 .setParameter("userType", userType)
