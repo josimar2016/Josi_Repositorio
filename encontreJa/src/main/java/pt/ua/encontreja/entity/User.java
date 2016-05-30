@@ -1,4 +1,3 @@
-
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
@@ -15,7 +14,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-
 @Entity
 @Table(name = "User")
 public class User implements Serializable {
@@ -28,20 +26,18 @@ public class User implements Serializable {
     private String password;
     private String userImg;
 
-   
     private String type;
     private int phone;
     private String location;
-    
+
 //    @OneToMany(mappedBy = "User", cascade={CascadeType.ALL}, orphanRemoval=true)
 //    private List<Contact> contactList;
-    
-    @OneToMany(mappedBy = "User", cascade={CascadeType.ALL}, orphanRemoval=true)
+    @OneToMany(mappedBy = "User", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Service> serviceList;
-    
-    @OneToMany(mappedBy = "User", cascade={CascadeType.ALL}, orphanRemoval=true)
+
+    @OneToMany(mappedBy = "User", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<ContactService> contactServiceList;
-    
+
     @OneToOne(mappedBy = "User")
     private Rating rating;
 
@@ -59,14 +55,14 @@ public class User implements Serializable {
         this.name = name;
     }
 
-     public String getUserImg() {
+    public String getUserImg() {
         return userImg;
     }
 
     public void setUserImg(String userImg) {
         this.userImg = userImg;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -78,12 +74,11 @@ public class User implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
 
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     @XmlTransient
     @JsonIgnore
     public String getPassWord() {
@@ -117,18 +112,15 @@ public class User implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
 //    @XmlTransient
 //    @JsonIgnore
 //    public List<Contact> getcontactList() {
 //        return contactList;
 //    }
-
 //    public void setcontactList(List<Contact> contactList) {
 //        this.contactList = contactList;
 //    }
- 
-    
     public List<Service> getServiceList() {
         return serviceList;
     }
@@ -136,6 +128,7 @@ public class User implements Serializable {
     public void setServiceList(List<Service> serviceList) {
         this.serviceList = serviceList;
     }
+
     @XmlTransient
     @JsonIgnore
     public List<ContactService> getContactServiceList() {
@@ -153,8 +146,7 @@ public class User implements Serializable {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-    
-    
+
 //    public void addContact(Contact contact){
 //        contactList.add(contact);
 //    }
@@ -162,16 +154,12 @@ public class User implements Serializable {
 //    public void removeContact(Contact contact){
 //        contactList.remove(contact);
 //    }
-    
-     public void addService(Service service){
+    public void addService(Service service) {
         serviceList.add(service);
     }
-    
-    public void removeService(Service service){
+
+    public void removeService(Service service) {
         serviceList.remove(service);
     }
 
-    
-    
-    
 }

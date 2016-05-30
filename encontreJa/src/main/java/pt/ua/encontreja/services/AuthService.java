@@ -1,6 +1,4 @@
-
 package pt.ua.encontreja.services;
-
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -28,8 +26,13 @@ public class AuthService {
 
             return Response.ok(user).build();
 
+        } catch (RuntimeException e) {
+            Response.status(Response.Status.UNAUTHORIZED).build();
+            throw e;
+            //return Response.status(Response.Status.UNAUTHORIZED).build();
+
         } catch (Exception e) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            throw new RuntimeException(e);
         }
     }
 }

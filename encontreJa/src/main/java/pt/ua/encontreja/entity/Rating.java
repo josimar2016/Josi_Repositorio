@@ -1,9 +1,7 @@
-
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,29 +13,28 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-
 @Entity
 @Table(name = "Rating")
 public class Rating implements Serializable {
 
-    public Rating() {
-    }
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rating;
     private String comment;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     @JsonIgnore
     @OneToOne
     private User user;
-    
+
     @JsonIgnore
     @ManyToOne
     private Service service;
+
+    public Rating() {
+    }
 
     public int getRating() {
         return rating;
@@ -79,11 +76,4 @@ public class Rating implements Serializable {
         this.service = service;
     }
 
-   
-    
-    
-    
-    
-    
-    
 }

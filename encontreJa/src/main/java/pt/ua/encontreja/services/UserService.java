@@ -50,9 +50,9 @@ public class UserService {
 
         if (cat > 0 && location != null) {
 
-            return userDao.GetUsersByTypeWithParms(type, cat, location);
+            return userDao.getUsersByTypeWithParms(type, cat, location);
         } else {
-            return userDao.GetUsersByType(type);
+            return userDao.getUsersByType(type);
         }
 
     }

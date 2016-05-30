@@ -1,4 +1,3 @@
-
 package pt.ua.encontreja.dao;
 
 import java.util.List;
@@ -6,7 +5,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.User;
-
 
 @Stateless
 public class UserDAO extends AbstractFacade<User> {
@@ -32,42 +30,39 @@ public class UserDAO extends AbstractFacade<User> {
                 .getSingleResult();
         return (user);
     }
-      public int userExistsByEmail(String email) {
+
+    public int userExistsByEmail(String email) {
 
         String q = "SELECT u FROM User u WHERE u.email = :email";
-        
-        int res = -1;
-    
-        res = em.createQuery(q)
-            .setParameter("email", email)
-            .getResultList().size();
 
-          
-       System.out.println("first:" + res);
+        int res = -1;
+
+        res = em.createQuery(q)
+                .setParameter("email", email)
+                .getResultList().size();
+
+        System.out.println("first:" + res);
         return (res);
     }
 
-
-    public List<User> GetUsersByType(String type) {
+    public List<User> getUsersByType(String type) {
 
         String q = "SELECT u FROM User u WHERE u.type LIKE :type";
 
-        List<User> results = em.createQuery(q)
-                .setParameter("type", type).getResultList();
-        return results;
+        return (em.createQuery(q).setParameter("type", type).getResultList());
     }
 
-    public List<User> GetUsersByTypeWithParms(String type, int cat, String location) {
+    public List<User> getUsersByTypeWithParms(String type, int cat, String location) {
 
         String q = "SELECT u FROM User u, Service s, Category c \n"
                 + " WHERE u.id = s.id and s.id = c.id and u.type LIKE :type and c.id = :cid and u.location = :location";
 
-        List<User> results = em.createQuery(q)
+        return (em.createQuery(q)
                 .setParameter("type", type)
                 .setParameter("cid", cat)
                 .setParameter("location", location)
-                .getResultList();
-        return results;
+                .getResultList());
+
     }
 
     public int editContactRating(User user) {

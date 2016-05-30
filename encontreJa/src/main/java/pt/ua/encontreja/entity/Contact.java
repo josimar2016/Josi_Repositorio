@@ -1,9 +1,7 @@
-
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,39 +13,35 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-
-
 @Entity
-@Table(name="Contact")
+@Table(name = "Contact")
 public class Contact implements Serializable {
 
-    public Contact() {
-    }
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String description;
+    private double estimatedHours;
+
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    @ManyToOne
+    private User client;
+
+    @ManyToOne
+    private User professional;
+
+    @ManyToOne
+    private Service service;
+
+    public Contact() {
+    }
 
     public int getId() {
         return id;
     }
 
-    private String description;
-    private double estimatedHours;
-    
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    
-    @ManyToOne
-    private User client;
-    
-    @ManyToOne
-    private User professional;
-    
-    @ManyToOne
-    private Service service;
-
-   
     public String getDescription() {
         return description;
     }
@@ -88,8 +82,6 @@ public class Contact implements Serializable {
         this.professional = professional;
     }
 
-  
-    
     @XmlTransient
     @JsonIgnore
     public Service getService() {
@@ -100,12 +92,4 @@ public class Contact implements Serializable {
         this.service = service;
     }
 
-  
-  
-   
-    
-    
-    
-    
-    
 }
