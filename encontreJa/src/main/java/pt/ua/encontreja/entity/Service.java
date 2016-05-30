@@ -1,5 +1,6 @@
 package pt.ua.encontreja.entity;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Service")
 public class Service implements Serializable {
 
-    private static final long serialVersionUID = 1905122041950251207L;
+    private static final long serialVersionUID = 2405172041950251807L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,7 +112,7 @@ public class Service implements Serializable {
         return contactList;
     }
 
-    public void setContactList(List<Contact> contactList) {
+    public void setContactList(List<Contact> contactList) throws IOException, ClassNotFoundException{
         this.contactList = contactList;
     }
 
