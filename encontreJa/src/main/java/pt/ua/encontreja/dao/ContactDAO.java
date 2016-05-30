@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 @Stateless
 public class ContactDAO extends AbstractFacade<Contact> {
 
-    static final Logger log = Logger.getLogger("ContactDAO");
+    private static final Logger log = Logger.getLogger("ContactDAO");
 
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;

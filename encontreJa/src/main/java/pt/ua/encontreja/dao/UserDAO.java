@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 @Stateless
 public class UserDAO extends AbstractFacade<User> {
-    static final Logger log = Logger.getLogger("UserDAO");
+    private static final Logger log = Logger.getLogger("UserDAO");
     
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;

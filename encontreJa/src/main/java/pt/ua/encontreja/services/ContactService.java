@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 @Path("/contact")
 public class ContactService {
 
-    static final Logger log = Logger.getLogger("ContactService");
+    private static final Logger log = Logger.getLogger("ContactService");
     @EJB
     ContactDAO contactDAO;
 
@@ -82,18 +82,10 @@ public class ContactService {
         log.log(Level.INFO, "descricao:{0}", description);
         log.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
         
-//        System.out.println("idService:" + idService);
-//        System.out.println("professional:" + professional);
-//        System.out.println("client:" + client);
-//        System.out.println("descricao:" + description);
-//        System.out.println("estimatedHours:" + estimatedHours);
 
         User userClient = userDao.find(client);
         log.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
-        
-//        System.out.println("encontrei cliente:" + (userClient == null));
 
-//        System.out.println("encontrei cliente:" + userClient.getEmail());
         log.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
         
         
