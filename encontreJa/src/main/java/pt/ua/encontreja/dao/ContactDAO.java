@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 @Stateless
 public class ContactDAO extends AbstractFacade<Contact> {
 
-    private static final Logger log = Logger.getLogger("ContactDAO");
+    private static final Logger LOGGER = Logger.getLogger("ContactDAO");
 
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
@@ -33,8 +33,8 @@ public class ContactDAO extends AbstractFacade<Contact> {
         String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType";
 
 //        System.out.println("userType:" + userType);
-        log.setLevel(Level.ALL);
-        log.log(Level.INFO, "userType:{0}", userType);
+        LOGGER.setLevel(Level.ALL);
+        LOGGER.log(Level.INFO, "userType:{0}", userType);
         
         return em.createQuery(q).setParameter("id", id)
                 .setParameter("userType", userType)

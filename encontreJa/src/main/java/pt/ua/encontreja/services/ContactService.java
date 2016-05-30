@@ -37,7 +37,7 @@ import java.util.logging.Logger;
 @Path("/contact")
 public class ContactService {
 
-    private static final Logger log = Logger.getLogger("ContactService");
+    private static final Logger LOGGER = Logger.getLogger("ContactService");
     @EJB
     ContactDAO contactDAO;
 
@@ -75,18 +75,18 @@ public class ContactService {
             @Context HttpServletResponse servletResponse) {
         //Nota: Remove the unused method parameter(s) "servletResponse"!!!
         
-        log.setLevel(Level.ALL);
-        log.log(Level.INFO, "idService:{0}", idService);
-        log.log(Level.INFO, "professional:{0}", professional);
-        log.log(Level.INFO, "client:{0}", client);
-        log.log(Level.INFO, "descricao:{0}", description);
-        log.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
+        LOGGER.setLevel(Level.ALL);
+        LOGGER.log(Level.INFO, "idService:{0}", idService);
+        LOGGER.log(Level.INFO, "professional:{0}", professional);
+        LOGGER.log(Level.INFO, "client:{0}", client);
+        LOGGER.log(Level.INFO, "descricao:{0}", description);
+        LOGGER.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
         
 
         User userClient = userDao.find(client);
-        log.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
+        LOGGER.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
 
-        log.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
+        LOGGER.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
         
         
         User professionalUser = userDao.find(professional);

@@ -8,11 +8,11 @@ import pt.ua.encontreja.entity.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 @Stateless
 public class UserDAO extends AbstractFacade<User> {
-    private static final Logger log = Logger.getLogger("UserDAO");
-    
+
+    private static final Logger LOGGER = Logger.getLogger("UserDAO");
+
     @PersistenceContext(unitName = "encontreja")
     private EntityManager em;
 
@@ -43,13 +43,10 @@ public class UserDAO extends AbstractFacade<User> {
         res = em.createQuery(q)
                 .setParameter("email", email)
                 .getResultList().size();
-        
-        
-//        System.out.println("first:" + res);
 
-        log.setLevel(Level.ALL);
-        log.log(Level.INFO, "first:{0}", res);
-        
+        LOGGER.setLevel(Level.ALL);
+        LOGGER.log(Level.INFO, "first:{0}", res);
+
         return res;
     }
 
