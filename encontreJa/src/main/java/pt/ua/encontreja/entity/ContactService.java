@@ -15,7 +15,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ContactService")
 public class ContactService implements Serializable {
+
     //nome incorreto é preciso mudar...
+    private static final long serialVersionUID = 1905122041950251207L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +36,7 @@ public class ContactService implements Serializable {
     private Contact contact;
 
     public ContactService() {
-        
+
     }
 
     public Contact getContact() {

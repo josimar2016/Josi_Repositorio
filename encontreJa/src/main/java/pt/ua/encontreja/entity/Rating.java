@@ -17,6 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Rating")
 public class Rating implements Serializable {
 
+    private static final long serialVersionUID = 1905122041950251207L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ratng;

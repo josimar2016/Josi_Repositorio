@@ -18,7 +18,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Service")
 public class Service implements Serializable {
 
-    private static final long serialVersionUID = 2405172041950251807L;
+    private static final long serialVersionUID = 1905122041950251207L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,12 +2,10 @@
 package pt.ua.encontreja.dao;
 
 import java.util.List;
-import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pt.ua.encontreja.entity.Contact;
-import java.util.logging.Logger;
 
 @Stateless
 public class ContactDAO extends AbstractFacade<Contact> {
