@@ -30,11 +30,19 @@ public class ContactDAO extends AbstractFacade<Contact> {
 
     public List getAllContactsToUser(int id, String userType) {
 
-        String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType";
+        //String q = "SELECT c FROM Contact c , User u WHERE u.id = :id and u.type = :userType and u.id = c.professional";
+        String q ;
+        if (userType.toLowerCase().contains("professional")) {
+            q = "SELECT c FROM Contact c INNER JOIN c.professional u where u.id = :id and u.type = :userType";
+        }
+        else {
+            q = "SELECT c FROM Contact c INNER JOIN c.client u where u.id = :id and u.type = :userType";
+        }
 
         LOGGER.setLevel(Level.ALL);
         LOGGER.log(Level.INFO, "userType:{0}", userType);
-        
+        LOGGER.log(Level.INFO, "userID:{0}", id);
+        LOGGER.log(Level.INFO, "q:{0}", q);
         return em.createQuery(q).setParameter("id", id)
                 .setParameter("userType", userType)
                 .getResultList();

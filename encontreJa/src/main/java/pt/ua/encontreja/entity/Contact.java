@@ -2,10 +2,12 @@ package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,6 +19,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Contact")
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1905122041950251207L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,10 +29,10 @@ public class Contact implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @ManyToOne
+
     private User client;
 
-    @ManyToOne
+
     private User professional;
 
     @ManyToOne
@@ -73,7 +76,9 @@ public class Contact implements Serializable {
     public void setClient(User client) {
         this.client = client;
     }
-
+    public void setId(int id) {
+            this.id = id;
+        }
     public User getProfessional() {
         return professional;
     }

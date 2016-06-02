@@ -39,7 +39,7 @@ public class User implements Serializable {
 
     @OneToOne(mappedBy = "User")
     private Rating rating;
-
+    
     public User() {
         this.serviceList = new ArrayList<>();
         this.contactServiceList = new ArrayList<>();

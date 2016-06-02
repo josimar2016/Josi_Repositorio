@@ -1,0 +1,52 @@
+
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h2 class="big-title">Adicionar folha de serviço</h2>
+                <!-- Form -->
+                <div class="login-box-body">
+                    <form role="form" ng-submit="processForm()">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <textarea class="form-control" placeholder="Descrição" rows="9" ng-model="formData.description" ></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="horas" ng-model="formData.hours" placeholder="Horas contratadas">
+                            </div>
+
+
+                            <input type="hidden"  ng-model="formData.user_id"  ng-init="formData.user_id = userid" />
+                            <input type="hidden"  ng-model="formData.contact_id"   ng-init="formData.contact_id = contactid"/>
+
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">{{btnsubmit}}</button>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12"> {{message}} 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2 class="big-title">Profissionais</h2>
+                <div class="information">
+                    É um profissional que pretende registar-se no nosso portal?
+                </div>
+                <br />
+                <p>
+                    <a href="#register_professional" class="btn btn-larg btn-effect">Registo Profissional</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+

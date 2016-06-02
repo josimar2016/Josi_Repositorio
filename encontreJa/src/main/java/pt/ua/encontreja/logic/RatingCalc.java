@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package pt.ua.encontreja.logic;
 
 import java.util.List;
 import pt.ua.encontreja.entity.Rating;
@@ -14,7 +14,7 @@ import pt.ua.encontreja.entity.Rating;
  */
 public class RatingCalc {
 
-    private final List<Rating> ratings;
+    private List<Rating> ratings;
 
     public RatingCalc(List<Rating> ratings) {
         this.ratings = ratings;
@@ -28,6 +28,6 @@ public class RatingCalc {
             count++;
         }
 
-        return avg / (double) count;
+        return (avg / (double) count);
     }
 }

@@ -14,7 +14,7 @@
                         <th>Origem</th>
                         <th>Descrição</th>
                         <th>Horas estimadas</th>
-
+                        <th>Horas estimadas</th>        
                     </tr>
                     <tr ng-repeat="contact in contacts">
 
@@ -23,7 +23,7 @@
                         <td>email: {{ contact.client.email }} <br> telefone: {{ contact.client.phone }}</td>
                         <td>{{ contact.description}}</td>
                         <td>{{ contact.estimatedHours}}</td>
-                        
+                        <td><a href="#add_service/{{contact.id }}">Adicionar serviço</a></td>
                     </tr>
                 </table>
 

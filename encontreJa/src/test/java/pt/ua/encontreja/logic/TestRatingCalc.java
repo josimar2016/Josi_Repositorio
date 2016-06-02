@@ -1,3 +1,5 @@
+package pt.ua.encontreja.logic;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,13 +29,13 @@ public class TestRatingCalc {
        
         List<Rating> ratings = new ArrayList<>();
         Rating rat1 = new Rating();
-        rat1.setRatng(5);
+        rat1.setRating(5);
         
         Rating rat2 = new Rating();
-        rat2.setRatng(3);
+        rat2.setRating(3);
         
         Rating rat3 = new Rating();
-        rat3.setRatng(4);
+        rat3.setRating(4);
         
         ratings.add(rat1);
         ratings.add(rat2);
