@@ -123,7 +123,6 @@ public class EntityTest {
         service.setFeePrice(feePrice);
         serviceList.add(service);
         assertEquals("O serviço criado não corresponde com o esperado", serviceList.get(0), service);
-        System.out.println("Serviços: "+serviceList.get(0).getDescription());
     }
 
     
