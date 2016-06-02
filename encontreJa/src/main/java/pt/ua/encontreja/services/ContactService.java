@@ -74,21 +74,19 @@ public class ContactService {
             @FormParam("idService") int idService,
             @Context HttpServletResponse servletResponse) {
         //Nota: Remove the unused method parameter(s) "servletResponse"!!!
-        
+
         LOGGER.setLevel(Level.ALL);
         LOGGER.log(Level.INFO, "idService:{0}", idService);
         LOGGER.log(Level.INFO, "professional:{0}", professional);
         LOGGER.log(Level.INFO, "client:{0}", client);
         LOGGER.log(Level.INFO, "descricao:{0}", description);
         LOGGER.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
-        
 
         User userClient = userDao.find(client);
-        LOGGER.log(Level.INFO, "encontrei cliente:{0}", (userClient == null));
+        LOGGER.log(Level.INFO, "encontrei cliente:{0}", userClient == null);
 
         LOGGER.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
-        
-        
+
         User professionalUser = userDao.find(professional);
 
         Service service = serviceDao.find(idService);

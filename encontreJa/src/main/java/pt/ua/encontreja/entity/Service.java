@@ -140,5 +140,4 @@ public class Service implements Serializable {
     public void removeRating(Rating rating) {
         ratingList.remove(rating);
     }
-
 }

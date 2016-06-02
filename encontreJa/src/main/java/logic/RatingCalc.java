@@ -14,7 +14,7 @@ import pt.ua.encontreja.entity.Rating;
  */
 public class RatingCalc {
 
-    private List<Rating> ratings;
+    private final List<Rating> ratings;
 
     public RatingCalc(List<Rating> ratings) {
         this.ratings = ratings;
@@ -28,6 +28,6 @@ public class RatingCalc {
             count++;
         }
 
-        return (avg / (double) count);
+        return avg / (double) count;
     }
 }
