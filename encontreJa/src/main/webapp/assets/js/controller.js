@@ -224,7 +224,7 @@ mainApp.controller('peopleController', function ($scope, $http, $location) {
 
             $scope.title = "Resultados da pesquisa em " + $location.search().region + " de " + response.name;
             $scope.pageTitle = "PESQUISA DE PROFISSIONAIS";
-            $http.get("api/user/type/profissional?l=" + $location.search().region + "&c=" + $location.search().category).success(function (response) {
+            $http.get("api/user/type/professional?l=" + $location.search().region + "&c=" + $location.search().category).success(function (response) {
                 $scope.users = response;
                 if (response == "") {
                     $scope.message = "nao foram encontrados resultados para a sua pesquisa";

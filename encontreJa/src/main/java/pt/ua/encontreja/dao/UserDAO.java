@@ -60,7 +60,7 @@ public class UserDAO extends AbstractFacade<User> {
     public List<User> getUsersByTypeWithParms(String type, int cat, String location) {
 
         String q = "SELECT u FROM User u, Service s, Category c \n"
-                + " WHERE u.id = s.id and s.id = c.id and u.type LIKE :type and c.id = :cid and u.location = :location";
+                + " WHERE s.user = u and s.category = c and u.type LIKE :type and c.id = :cid and u.location = :location";
 
         return em.createQuery(q)
                 .setParameter("type", type)

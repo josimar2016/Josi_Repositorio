@@ -30,10 +30,10 @@ public class Service implements Serializable {
     private double feePrice;
     //falta adicionar a imagem
 
-    @ManyToOne
+
     private User user;
 
-    @ManyToOne
+
     private Category category;
 
     @OneToMany(mappedBy = "Service", cascade = {CascadeType.ALL}, orphanRemoval = true)
