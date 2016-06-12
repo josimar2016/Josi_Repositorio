@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pt.ua.encontreja.services;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,56 +23,89 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import pt.ua.encontreja.dao.ContactDAO;
+import pt.ua.encontreja.dao.ServiceDAO;
+import pt.ua.encontreja.dao.UserDAO;
 import pt.ua.encontreja.entity.Contact;
-/**
- *
- * @author arrais
- */
+import pt.ua.encontreja.entity.Service;
+import pt.ua.encontreja.entity.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @Stateless
-@Path("/contact") 
+@Path("/contact")
 public class ContactService {
-    
+
+    private static final Logger LOGGER = Logger.getLogger("ContactService");
     @EJB
     ContactDAO contactDAO;
-    
+
+    @EJB
+    UserDAO userDao;
+
+    @EJB
+    ServiceDAO serviceDao;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Contact> getAll() {
         return contactDAO.findAll();
-       
+
     }
-    
+
     @GET
-    @Path("/{id}")
+    @Path("/{id}/{userTtype}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Contact getContact(@PathParam("id") int id) {
-        return contactDAO.getContact(id);
+    public List<Contact> getContact(@PathParam("id") int id,
+            @PathParam("userTtype") String userTtype
+    ) {
+        return contactDAO.getAllContactsToUser(id, userTtype);
     }
-    
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String insertContact(
-            @FormParam("estimatedHours") double estimatedHours,
-            @FormParam("data") String data,
-            @FormParam("descricao") String descricao,
-            @Context HttpServletResponse servletResponse) throws ParseException{
-        
+    public Response insertContact(
+            @FormParam("estimatedhours") double estimatedHours,
+            @FormParam("description") String description,
+            @FormParam("idClient") int client,
+            @FormParam("idProfessional") int professional,
+            @FormParam("idService") int idService,
+            @Context HttpServletResponse servletResponse) {
+        //Nota: Remove the unused method parameter(s) "servletResponse"!!!
+
+        LOGGER.setLevel(Level.ALL);
+        LOGGER.log(Level.INFO, "idService:{0}", idService);
+        LOGGER.log(Level.INFO, "professional:{0}", professional);
+        LOGGER.log(Level.INFO, "client:{0}", client);
+        LOGGER.log(Level.INFO, "descricao:{0}", description);
+        LOGGER.log(Level.INFO, "estimatedHours:{0}", estimatedHours);
+
+        User userClient = userDao.find(client);
+        LOGGER.log(Level.INFO, "encontrei cliente:{0}", userClient == null);
+
+        LOGGER.log(Level.INFO, "encontrei cliente:{0}", userClient.getEmail());
+
+        User professionalUser = userDao.find(professional);
+
+        Service service = serviceDao.find(idService);
+
         Contact contact = new Contact();
-        contact.setDescription(descricao);
+        contact.setDescription(description);
+        contact.setClient(userClient);
+        contact.setProfessional(professionalUser);
+        contact.setService(service);
         contact.setEstimatedHours(estimatedHours);
-        
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date data1 = null;
-        data1 = df.parse(data);
-                
-        contact.setDate(data1);
-        //TO-DO
-        return "sucess";    
-        
+
+        Date dateobj = new Date();
+
+        contact.setDate(dateobj);
+        contactDAO.create(contact);
+        return Response.ok().build();
+
     }
-    
+
     @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -80,23 +114,24 @@ public class ContactService {
             @FormParam("estimatedHours") double estimatedHours,
             @FormParam("data") String data,
             @FormParam("descricao") String descricao,
-            @Context HttpServletResponse servletResponse) throws ParseException{
-        
+            @Context HttpServletResponse servletResponse) throws ParseException {
+
         Contact contact = contactDAO.find(id);
-        
-         if(contact == null)
+
+        if (contact == null) {
             return String.valueOf(-1);
-         
+        }
+
         contact.setDescription(descricao);
         contact.setEstimatedHours(estimatedHours);
-        
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date data1 = null;
         data1 = df.parse(data);
-                
+
         contact.setDate(data1);
-         
-         return "Sucess";
-        
+
+        return "Sucess";
+
     }
 }

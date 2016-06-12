@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,39 +15,36 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-/**
- *
- * @author arrais
- */
-
 @Entity
-@Table(name="Contact")
+@Table(name = "Contact")
 public class Contact implements Serializable {
-
-    public Contact() {
-    }
+    private static final long serialVersionUID = 1905122041950251207L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String description;
+    private double estimatedHours;
+
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+
+    private User client;
+
+
+    private User professional;
+
+    @ManyToOne
+    private Service service;
+
+    public Contact() {
+    }
 
     public int getId() {
         return id;
     }
 
-    private String description;
-    private double estimatedHours;
-    
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    
-    @ManyToOne
-    private User user;
-    
-    @ManyToOne
-    private Service service;
-
-   
     public String getDescription() {
         return description;
     }
@@ -75,15 +68,23 @@ public class Contact implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
-    
-    @XmlTransient
-    @JsonIgnore
-    public User getUser() {
-        return user;
+
+    public User getClient() {
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setClient(User client) {
+        this.client = client;
+    }
+    public void setId(int id) {
+            this.id = id;
+        }
+    public User getProfessional() {
+        return professional;
+    }
+
+    public void setProfessional(User professional) {
+        this.professional = professional;
     }
 
     @XmlTransient
@@ -96,12 +97,4 @@ public class Contact implements Serializable {
         this.service = service;
     }
 
-  
-  
-   
-    
-    
-    
-    
-    
 }

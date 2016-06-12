@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,27 +12,32 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author arrais
- */
 @Entity
 @Table(name = "ContactService")
 public class ContactService implements Serializable {
 
-    public ContactService() {
-    }
-    
+    //nome incorreto é preciso mudar...
+    private static final long serialVersionUID = 1905122041950251207L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private double hours;
-     
+
     @Temporal(TemporalType.DATE)
     private Date date;
     private String description;
-   
+
     @ManyToOne
     private User user;
+
+    @OneToOne
+    private Contact contact;
+
+    public ContactService() {
+
+    }
 
     public Contact getContact() {
         return contact;
@@ -47,9 +46,6 @@ public class ContactService implements Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-    
-    @OneToOne
-    private Contact contact;
 
     public double getHours() {
         return hours;
@@ -61,6 +57,10 @@ public class ContactService implements Serializable {
 
     public Date getDate() {
         return date;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setDate(Date date) {
@@ -83,8 +83,4 @@ public class ContactService implements Serializable {
         this.user = user;
     }
 
- 
-
-    
-    
 }

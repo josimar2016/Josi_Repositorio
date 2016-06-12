@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pt.ua.encontreja.services;
+
 import java.util.List;
 import pt.ua.encontreja.dao.UserDAO;
 import pt.ua.encontreja.entity.User;
@@ -14,53 +11,63 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import pt.ua.encontreja.dao.CategoryDAO;
 import pt.ua.encontreja.dao.ServiceDAO;
+import pt.ua.encontreja.entity.Category;
 import pt.ua.encontreja.entity.Service;
 
-/**
- *
- * @author arrais
- */
+
 @Stateless
-@Path("/user") 
+@Path("/user")
 public class UserService {
-    
+
     @EJB
     UserDAO userDao;
-    
+
+    @EJB
+    CategoryDAO categoryDAO;
+
     @EJB
     ServiceDAO serviceDAO;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAll() {
         return userDao.findAll();
     }
-    
+
     @GET
     @Path("/type/{type}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsersbyType(@PathParam("type") String type) {
-        return userDao.GetUsersByType(type);
+    public List<User> getUsersbyType(@PathParam("type") String type, @QueryParam("c") int cat, @QueryParam("l") String location) {
+
+        if (cat > 0 && location != null) {
+
+            return userDao.getUsersByTypeWithParms(type, cat, location);
+        } else {
+            return userDao.getUsersByType(type);
+        }
+
     }
-    
+
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(@PathParam("id") int id) {
         return userDao.getUser(id);
     }
-    
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String insertCUser(
-           
+    public User insertCUser(
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
@@ -71,80 +78,92 @@ public class UserService {
             @FormParam("feePrice") double feePrice,
             @FormParam("hourPrice") double hourPrice,
             @FormParam("service") String serviceName,
+            @FormParam("category[id]") int category,
             @FormParam("userImg") String userImg,
-            
-            @Context HttpServletResponse servletResponse){
-            System.out.println("creating new user");
-            System.out.println("nome:" + nome);
-            System.out.println("email:" + email);
-            System.out.println("password:" + password);
-            System.out.println("type:" + type);
-            System.out.println("phone:" + phone);
-            System.out.println("location:" + location);
-            System.out.println("creating new Service:");
-            System.out.println("nome:" + serviceName);
-            System.out.println("descripton:" + descripton);
-            System.out.println("feePrice:" + feePrice);
-            System.out.println("hourPrice:" + hourPrice);
-            
-            User user = new User();
-           
-            
-            user.setName(nome);
-            user.setEmail(email);
-            user.setPassWord(password);
-            user.setPhone(phone);
-            user.setLocation(location);
-            user.setUserImg(userImg);
-            user.setType(type);
-            
-         
-            userDao.create(user);
-          
-            
-            
-            if(type == "professional"){ 
-                Service service = new Service();
-                
-                service.setTitle(serviceName);
-                service.setDescription(descripton);
-                service.setFeePrice(feePrice);
-                service.setHourPrice(hourPrice);
+            @Context HttpServletResponse servletResponse) {
 
-                user.addService(service);
-                serviceDAO.create(service);
-             }
+        if (userDao.userExistsByEmail(email) > 0) {
+            return null;
+        }
 
-            return "1";                  
+        User user = new User();
+
+        user.setName(nome);
+        user.setEmail(email);
+        user.setPassWord(password);
+        user.setPhone(phone);
+        user.setLocation(location);
+        user.setUserImg(userImg);
+        user.setType(type);
+
+        userDao.create(user);
+        if (type.toLowerCase().contains("professional")) {
+
+            Service service = new Service();
+
+            service.setDescription(descripton);
+            service.setFeePrice(feePrice);
+            service.setUser(user);
+
+            service.setHourPrice(hourPrice);
+            Category cat = categoryDAO.find(category);
+            service.setTitle(cat.getName());
+            service.setCategory(cat);
+            user.addService(service);
+            serviceDAO.create(service);
+        }
+
+        return user;
     }
-    
-    @POST
+
+    @PUT
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String editCUser(
-            @FormParam("id_user") int id_user,
+    public void editCUser(
+            @PathParam("id") int id,
             @FormParam("nome") String nome,
             @FormParam("email") String email,
             @FormParam("password") String password,
-            @FormParam("type") String type,
             @FormParam("phone") int phone,
             @FormParam("location") String location,
-            @FormParam("userImg") String userImg,
-            @Context HttpServletResponse servletResponse){
-        
-            User user = new User();
-            user.setId(id_user);
-            user.setName(nome);
-            user.setEmail(email);
+            @FormParam("description") String descripton,
+            @FormParam("feePrice") double feePrice,
+            @FormParam("hourPrice") double hourPrice,
+            @FormParam("service") String serviceName,
+            @FormParam("selectedCategory[id]") int category,
+            @Context HttpServletResponse servletResponse) {
+
+     
+        User user = userDao.find(id);
+       
+        user.setName(nome);
+        user.setEmail(email);
+        if (password.length() >0) {
             user.setPassWord(password);
-            user.setPhone(phone);
-            user.setLocation(location);
-            user.setType(type);
-            user.setUserImg(userImg);
-            
-            userDao.create(user);
-            return "1";
-                    
+        }
+        user.setPhone(phone);
+        user.setLocation(location);
+        
+        if (user.getType().toLowerCase().contains("professional")) {
+         
+            Service service = user.getServiceList().get(0);
+
+            service.setDescription(descripton);
+            service.setFeePrice(feePrice);
+            service.setUser(user);
+            service.setHourPrice(hourPrice);
+
+            Category cat = categoryDAO.find(category);
+
+            service.setTitle(cat.getName());
+            service.setCategory(cat);
+            user.addService(service);
+
+            serviceDAO.edit(service);
+        }
+
+        userDao.edit(user);
+
     }
-    
+
 }

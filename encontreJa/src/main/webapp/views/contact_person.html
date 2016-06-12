@@ -3,26 +3,38 @@
     <div class="team section">
         <div class="container">
 
-            <h2 class="big-title">Entrar em contacto: PAULO SOUSA</h2>
-
-            <form action="" id="contact-form" class="contact-form" role="form" method="post">
+            <h2 class="big-title">Entrar em contacto: {{user.name}}</h2>
+            <br>
+            <div ng-show="showLogin">
+                Para enviar uma mensagem é necessário o seu login.
+                <br><br>
+                <p>
+                    <a href="#login" class="btn btn-larg btn-effect">Login</a>
+                </p>
+                <br><br>Caso ainda não tenha login, pode efetuar o seu registo
+                <p>
+                    <a href="#register" class="btn btn-larg btn-effect">Novo cliente</a>
+                </p>
+            </div>
+            <form role="form" ng-submit="processForm()">
                 <div class="row">
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" name="name" placeholder="Nome" value="Tiago Coelho" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="email" class="form-control" name="EMAIL" placeholder="Email" value="tiago.coelho@ua.pt" readonly>
-                    </div>
 
-                    <div class="col-md-4">
-                        <input type="number" class="form-control" name="horas" placeholder="Previsão de horas a contratar">
-                    </div>
                     <div class="col-md-12">
-                        <textarea class="form-control" placeholder="Mensagem" rows="9"></textarea>
+                        <textarea class="form-control" placeholder="Mensagem" rows="9" ng-model="formData.description" ></textarea>
                     </div>
+                    <div class="col-md-4">
+                        <input type="number" class="form-control" name="horas" ng-model="formData.estimatedhours" placeholder="Previsão de horas a contratar">
+                    </div>
+                    <div class="clearfix"></div>
+                    <input type="hidden"  ng-model="formData.idClient"  ng-init="formData.idClient = idClient" />
+                    <input type="hidden"  ng-model="formData.idProfessional"   ng-init="formData.idProfessional = idProfessional"/>
+                    <input type="hidden"  ng-model="formData.idService"  ng-init="formData.idService = idService" />
                     <div class="col-md-6">
                         <button type="submit" id="submit" class="btn btn-effect"> Enviar</button>
 
+                    </div>
+                    <div>
+                        {{message}}
                     </div>
                 </div>
             </form>

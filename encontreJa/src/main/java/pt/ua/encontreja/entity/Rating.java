@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pt.ua.encontreja.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,39 +13,36 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-/**
- *
- * @author arrais
- */
 @Entity
 @Table(name = "Rating")
 public class Rating implements Serializable {
 
-    public Rating() {
-    }
-    
+    private static final long serialVersionUID = 1905122041950251207L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rating;
     private String comment;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     @JsonIgnore
     @OneToOne
     private User user;
-    
+
     @JsonIgnore
     @ManyToOne
     private Service service;
+
+    public Rating() {
+    }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setRating(int ratng) {
+        this.rating = ratng;
     }
 
     public String getComment() {
@@ -86,11 +77,4 @@ public class Rating implements Serializable {
         this.service = service;
     }
 
-   
-    
-    
-    
-    
-    
-    
 }
