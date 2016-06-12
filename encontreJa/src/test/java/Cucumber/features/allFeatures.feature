@@ -26,11 +26,18 @@ Funcionalidade: Deverá ser possivel registar um novo utilizador na plataforma
     Então Eu devo ficar registado com sucesso
 
 
-@login
+@loginComParametros
     Cenário: Os campos de login estão preenchidos com dados válidos
     Dado O meu email é afonso@ua.pt
     E Password é 1212
     Quando Eu Selecionar Login
+    Então O meu login vai ser efetuado com sucesso
+
+@login
+
+    Cenário: O botao de login existe
+    Dado Eu abri o browser
+    Quando Abro encontroJa pagina de login
     Então O meu login vai ser efetuado com sucesso
 
 @EncontrarProfissional
@@ -40,3 +47,9 @@ Funcionalidade: Deverá ser possivel registar um novo utilizador na plataforma
     Quando Eu selecionar pesquisar
     Então Devo receber a informação que existe pelo menos uma empregada com o nome de maria amelia
 
+@logout
+    Cenário: Não me encontro com loggin feito
+        Dado Eu abri o browser
+        Dado Eu efetuo o login
+        Quando Eu abro selecionar o botao logout
+        Então O meu logout vai ser efetuado com sucesso
