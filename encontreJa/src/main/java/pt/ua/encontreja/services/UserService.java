@@ -77,7 +77,6 @@ public class UserService {
             @FormParam("description") String descripton,
             @FormParam("feePrice") double feePrice,
             @FormParam("hourPrice") double hourPrice,
-            @FormParam("service") String serviceName,
             @FormParam("category[id]") int category,
             @FormParam("userImg") String userImg) {
 
@@ -128,9 +127,7 @@ public class UserService {
             @FormParam("description") String descripton,
             @FormParam("feePrice") double feePrice,
             @FormParam("hourPrice") double hourPrice,
-            @FormParam("service") String serviceName,
-            @FormParam("selectedCategory[id]") int category,
-            @Context HttpServletResponse servletResponse) {
+            @FormParam("selectedCategory[id]") int category) {
 
      
         User user = userDao.find(id);

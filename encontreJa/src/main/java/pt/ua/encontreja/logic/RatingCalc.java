@@ -28,6 +28,6 @@ public class RatingCalc {
             count++;
         }
 
-        return (avg / (double) count);
+        return avg / (double) count;
     }
 }
