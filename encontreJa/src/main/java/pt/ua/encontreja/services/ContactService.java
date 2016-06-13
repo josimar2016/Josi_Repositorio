@@ -71,9 +71,8 @@ public class ContactService {
             @FormParam("description") String description,
             @FormParam("idClient") int client,
             @FormParam("idProfessional") int professional,
-            @FormParam("idService") int idService,
-            @Context HttpServletResponse servletResponse) {
-        //Nota: Remove the unused method parameter(s) "servletResponse"!!!
+            @FormParam("idService") int idService) {
+        
 
         LOGGER.setLevel(Level.ALL);
         LOGGER.log(Level.INFO, "idService:{0}", idService);
@@ -113,8 +112,7 @@ public class ContactService {
             @PathParam("id") int id,
             @FormParam("estimatedHours") double estimatedHours,
             @FormParam("data") String data,
-            @FormParam("descricao") String descricao,
-            @Context HttpServletResponse servletResponse) throws ParseException {
+            @FormParam("descricao") String descricao) throws ParseException {
 
         Contact contact = contactDAO.find(id);
 

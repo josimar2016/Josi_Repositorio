@@ -29,13 +29,13 @@ public class TestRatingCalc {
        
         List<Rating> ratings = new ArrayList<>();
         Rating rat1 = new Rating();
-        rat1.setRating(5);
+        rat1.setRtng(5);
         
         Rating rat2 = new Rating();
-        rat2.setRating(3);
+        rat2.setRtng(3);
         
         Rating rat3 = new Rating();
-        rat3.setRating(4);
+        rat3.setRtng(4);
         
         ratings.add(rat1);
         ratings.add(rat2);

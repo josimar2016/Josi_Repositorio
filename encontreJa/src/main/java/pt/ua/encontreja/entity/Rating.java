@@ -20,7 +20,7 @@ public class Rating implements Serializable {
     private static final long serialVersionUID = 1905122041950251207L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rating;
+    private int rtng;
     private String comment;
 
     @Temporal(TemporalType.DATE)
@@ -37,12 +37,12 @@ public class Rating implements Serializable {
     public Rating() {
     }
 
-    public int getRating() {
-        return rating;
+    public int getRtng() {
+        return rtng;
     }
 
-    public void setRating(int ratng) {
-        this.rating = ratng;
+    public void setRtng(int ratng) {
+        this.rtng = ratng;
     }
 
     public String getComment() {

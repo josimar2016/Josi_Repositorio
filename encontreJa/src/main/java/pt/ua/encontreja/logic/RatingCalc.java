@@ -24,7 +24,7 @@ public class RatingCalc {
         double avg = 0;
         int count = 0;
         for (Rating rat : ratings) {
-            avg += rat.getRating();
+            avg += rat.getRtng();
             count++;
         }
 

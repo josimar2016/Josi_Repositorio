@@ -79,8 +79,7 @@ public class UserService {
             @FormParam("hourPrice") double hourPrice,
             @FormParam("service") String serviceName,
             @FormParam("category[id]") int category,
-            @FormParam("userImg") String userImg,
-            @Context HttpServletResponse servletResponse) {
+            @FormParam("userImg") String userImg) {
 
         if (userDao.userExistsByEmail(email) > 0) {
             return null;
